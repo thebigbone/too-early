@@ -43,7 +43,7 @@ export function EntryDialog({ entry, onClose }: EntryDialogProps) {
     >
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-50 bg-ink/40" />
-        <Dialog.Popup className="fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-surface-default shadow-xl outline-none ring-1 ring-line-default">
+        <Dialog.Popup className="no-scrollbar fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto overscroll-contain rounded-2xl bg-surface-default shadow-xl outline-none ring-1 ring-line-default">
           <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-line-default bg-surface-default px-5 py-4 sm:px-7">
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">

@@ -47,19 +47,21 @@ export function EntryCard({ entry, index, onOpen }: EntryCardProps) {
         </span>
       </blockquote>
 
-      <p className="mt-4 font-mono text-[10px] text-content-secondary">
-        {entry.author} &middot; comment #{entry.id}
-      </p>
-
-      <div className="mt-auto border-t border-line-default pt-4">
+      <div className="mt-auto pt-4">
         <p className="font-mono text-[10px] text-content-secondary">
-          {collectionOf(entry) === "hit" ? "What happened" : "Reality check"}
+          {entry.author} &middot; comment #{entry.id}
         </p>
-        <p className="mt-1 text-sm leading-snug text-content-primary">{entry.outcome}</p>
-        <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-content-secondary transition-colors group-hover:text-content-primary">
-          Read the receipt
-          <ArrowUpRightIcon className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </span>
+
+        <div className="mt-4 border-t border-line-default pt-4">
+          <p className="font-mono text-[10px] text-content-secondary">
+            {collectionOf(entry) === "hit" ? "What happened" : "Reality check"}
+          </p>
+          <p className="mt-1 text-sm leading-snug text-content-primary">{entry.outcome}</p>
+          <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-content-secondary transition-colors group-hover:text-content-primary">
+            Read the receipt
+            <ArrowUpRightIcon className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </span>
+        </div>
       </div>
       <span className="sr-only">Open receipt {index + 1}</span>
     </a>
