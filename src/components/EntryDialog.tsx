@@ -34,6 +34,14 @@ export function EntryDialog({ entry, onClose }: EntryDialogProps) {
     }
   };
 
+  const noteLabel =
+    collectionOf(entry) === "hit"
+      ? "Why the critic was right"
+      : entry.verdict === "Right about the risk" ||
+          entry.verdict === "A little too early"
+        ? "What the critic got right"
+        : "Why it aged badly";
+
   return (
     <Dialog.Root
       open
@@ -118,9 +126,7 @@ export function EntryDialog({ entry, onClose }: EntryDialogProps) {
 
             <div className="mt-6">
               <p className="font-mono text-[10px] text-content-secondary">
-                {collectionOf(entry) === "hit"
-                  ? "Why the critic was right"
-                  : "Why it aged badly"}
+                {noteLabel}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-content-secondary text-pretty">
                 {entry.note}

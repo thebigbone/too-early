@@ -4,7 +4,7 @@ A two-sided corpus of Hacker News confidence: comments that dismissed products w
 
 **Live:** https://thebigbone.github.io/too-early/
 
-The site covers **248 comments from 2007 to 2026**: **199 wrong calls** (the product won) and **49 right calls** (the product failed), across AI, developer tools, infrastructure, marketplaces, productivity, consumer, social, and crypto/fintech.
+The site covers **468 comments from 2007 to 2026**: **379 wrong calls** (the product won) and **89 right calls** (the product failed), across AI, developer tools, infrastructure, marketplaces, productivity, consumer, social, and crypto/fintech. An interactive [charts page](https://thebigbone.github.io/too-early/charts/) maps the same corpus by year and category.
 
 ## The corpus
 
@@ -33,7 +33,7 @@ npm install
 npm run dev         # http://localhost:5173
 npm run build       # validates the corpus, typechecks, and builds
 npm run preview
-npm run verify:hn   # re-fetch all 248 comments from the HN API and check them
+npm run verify:hn   # re-fetch all 468 comments from the HN API and check them
 ```
 
 Validation:
@@ -43,7 +43,7 @@ npm run validate:data   # quote integrity, metadata, URLs, duplicates
 npm run verify:hn       # live HN API check + refreshes data/verified.json
 ```
 
-The build script merges `data/agents/*.json`, runs `build-corpus.ts`, and validates every quote against the fetched HN data. The last live verification passed `248/248` against the Hacker News API.
+The build script merges `data/agents/*.json`, runs `build-corpus.ts`, and validates every quote against the fetched HN data. The last live verification passed `468/468` against the Hacker News API.
 
 A separate **raw candidate pool** of 137 verified comments across 64 projects (2010–2026) is published at `public/corpus-raw.json`. It is deliberately uncurated and is not rendered as cards; it exists for further expansion.
 
@@ -52,13 +52,14 @@ The archive is curated in two collections:
 - **Wrong calls** — confident dismissals of products that won.
 - **Right calls** — early predictions of failure that were correct. These require the failure to be unambiguous and the comment to predate the shutdown.
 
-The `worst-critic` agent pass replaced 16 milder original picks with sharper comments from the same stories. The replacement IDs live in `src/data/entries.ts` so the curation decision is explicit.
+The `worst-critic` passes replaced 16 milder original picks and 18 milder agent picks with sharper comments from the same stories. The core replacements live in `src/data/entries.ts`; the agent-pool replacements live in `scripts/merge-agents.ts` so the curation decisions are explicit.
 
 ## Deploy
 
-The site is a static Vite build deployed to GitHub Pages by `.github/workflows/pages.yml`.
+The site is a two-page static Vite build (archive + charts) deployed to GitHub Pages by `.github/workflows/pages.yml`.
 
 - Production base path: `/too-early/` (set in `vite.config.ts` for `vite build`).
+- The charts page is a separate Vite entry at `charts/index.html`, linked from the archive header.
 - Push to `main` builds and publishes `dist/` via the official Pages actions.
 - Local production preview: `npm run build && npm run preview`, then open `/too-early/`.
 
@@ -68,6 +69,7 @@ The interface follows the [ui-skills](https://github.com/ibelick/ui-skills) desi
 
 - Light and dark themes, driven by `data-theme`, the system preference, and a localStorage override.
 - A two-sided archive: filter by all receipts, wrong calls, or right calls. Each card carries the verdict.
+- A separate interactive charts page with click-to-inspect bars, year/category filters, and a light/dark theme.
 - Inter Variable for interface copy, JetBrains Mono for metadata and code-adjacent details.
 - The ui-skills neutral token set: `page-default`, `surface-default`, `fill-subtle`, `content-primary`, `content-secondary`, `line-default`, and one accent (`content-accent`, `#1F78FF`).
 - Generous spacing, light borders, restrained radii, no gradients, no glow, no decorative color.

@@ -1,3 +1,4 @@
+import { withBase } from "../lib/base";
 import { ArrowUpRightIcon } from "./Icons";
 
 const rules = [
@@ -116,7 +117,7 @@ export function Method({ hitCount, onShowRightCalls }: MethodProps) {
             <p className="mt-8 flex flex-wrap items-center gap-2 font-mono text-[10px] text-content-secondary">
               The full dataset is available as JSON.
               <a
-                href={`${import.meta.env.BASE_URL}corpus.json`}
+                href={withBase("corpus.json")}
                 download="too-early-corpus.json"
                 className="inline-flex items-center gap-1 underline decoration-content-extra-muted underline-offset-4 transition-colors hover:text-content-primary hover:decoration-content-primary"
               >
@@ -127,7 +128,7 @@ export function Method({ hitCount, onShowRightCalls }: MethodProps) {
                 /
               </span>
               <a
-                href={`${import.meta.env.BASE_URL}corpus-raw.json`}
+                href={withBase("corpus-raw.json")}
                 download="too-early-raw-candidates.json"
                 className="inline-flex items-center gap-1 underline decoration-content-extra-muted underline-offset-4 transition-colors hover:text-content-primary hover:decoration-content-primary"
               >

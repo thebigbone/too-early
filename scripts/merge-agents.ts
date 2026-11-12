@@ -34,6 +34,30 @@ const excludedIds = new Set([
   26145173, // Clubhouse — faded, but did not clearly fail
   28798579, // FTX USDT take — superseded by a sharper, earlier FTX warning
 ]);
+
+// pass2-worst-critic.json replaces milder sibling comments already present in
+// the agent pool. Exclude the old picks so the archive only shows the sharpest
+// version of each critique.
+const supersededAgentIds = new Set([
+  3231298, // WhatsApp — replaced by 3230753
+  957926, // Node.js — replaced by 958870
+  934289, // Go — replaced by 934401
+  19127123, // SWC — replaced by 19126214
+  15494354, // Zig — replaced by 15494222
+  7835959, // Swift — replaced by 7864247
+  43163319, // Claude Code — replaced by 43165259
+  11784782, // Twilio — replaced by 11779729
+  37249300, // Hugging Face — replaced by 37251447
+  34492323, // Perplexity — replaced by 34492825
+  2546207, // Mailgun — replaced by 2545814
+  37891693, // Cursor — replaced by 37888706
+  5117350, // Segment — replaced by 5117108
+  27203095, // PlanetScale — replaced by 27198540
+  12719936, // Caddy — replaced by 12723650
+  29313315, // Remix — replaced by 29313453
+  11707524, // The DAO — replaced by 11711094
+  23324061, // Supabase — replaced by 23324936
+]);
 const merged: Entry[] = [];
 const seen = new Set<number>(coreIds);
 const errors: string[] = [];
@@ -62,6 +86,10 @@ for (const file of files) {
     }
     if (excludedIds.has(entry.id)) {
       perFile.push(`${file}: excluded ${entry.id}`);
+      continue;
+    }
+    if (supersededAgentIds.has(entry.id)) {
+      perFile.push(`${file}: superseded ${entry.id}`);
       continue;
     }
     for (const field of [
@@ -106,7 +134,10 @@ for (const file of files) {
     seen.add(entry.id);
     merged.push({
       ...entry,
-      category: file === "hardtech.json" ? "Infrastructure" : entry.category,
+      category:
+        file === "hardtech.json" || file.startsWith("pass2-hardtech")
+          ? "Infrastructure"
+          : entry.category,
       collection,
       verdict: collection === "hit" ? "Right call" : entry.verdict,
     });

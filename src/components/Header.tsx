@@ -1,5 +1,7 @@
+import { withBase } from "../lib/base";
 import { cn } from "../lib/cn";
-import { MoonIcon, ShuffleIcon, SunIcon } from "./Icons";
+import { ShuffleIcon } from "./Icons";
+import { ThemeButton } from "./ThemeButton";
 
 type HeaderProps = {
   onRandom: () => void;
@@ -36,22 +38,20 @@ export function Header({ onRandom, theme, onToggleTheme }: HeaderProps) {
           <a href="#archive" className={navLinkClass}>
             Archive
           </a>
+          <a
+            href={withBase("charts/")}
+            className={navLinkClass}
+          >
+            Charts
+          </a>
           <a href="#method" className={cn(navLinkClass, "hidden sm:inline-flex")}>
             Method
           </a>
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className={cn(navLinkClass, "w-8 justify-center px-0")}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          >
-            {theme === "dark" ? (
-              <SunIcon className="size-4" />
-            ) : (
-              <MoonIcon className="size-4" />
-            )}
-          </button>
+          <ThemeButton
+            theme={theme}
+            onToggle={onToggleTheme}
+            className="w-8 justify-center px-0"
+          />
           <button
             type="button"
             onClick={onRandom}

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Archive, type SortKey } from "./components/Archive";
+import { useTheme } from "./lib/useTheme";
 import { EntryDialog } from "./components/EntryDialog";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -16,22 +17,8 @@ import {
 } from "./data/entries";
 
 const PAGE_SIZE = 12;
-const THEME_KEY = "too-early-theme";
 
-type Theme = "light" | "dark";
 type CollectionFilter = "all" | Collection;
-
-const getInitialTheme = (): Theme => {
-  try {
-    const stored = window.localStorage.getItem(THEME_KEY);
-    if (stored === "light" || stored === "dark") return stored;
-  } catch {
-    // ignore storage access failures
-  }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-};
 
 const isCategory = (value: string | null): value is Category =>
   categories.includes(value as Category);
@@ -63,25 +50,8 @@ export default function App() {
   });
   const [visible, setVisible] = useState(PAGE_SIZE);
   const [selected, setSelected] = useState<Entry | null>(null);
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const { theme, toggle: toggleTheme } = useTheme();
   const searchRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.style.colorScheme = theme;
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", theme === "dark" ? "#0b0b0b" : "#ffffff");
-    try {
-      window.localStorage.setItem(THEME_KEY, theme);
-    } catch {
-      // ignore storage access failures
-    }
-  }, [theme]);
-
-  const toggleTheme = useCallback(() => {
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
-  }, []);
 
   const openFromHash = useCallback(() => {
     const match = window.location.hash.match(/^#c-(\d+)$/);

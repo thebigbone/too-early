@@ -1,4 +1,5 @@
 import { collectionOf, entries } from "../data/entries";
+import { withBase } from "../lib/base";
 import { ArrowUpRightIcon } from "./Icons";
 
 const footerLinkClass =
@@ -79,7 +80,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={`${import.meta.env.BASE_URL}corpus.json`}
+                  href={withBase("corpus.json")}
                   download="too-early-corpus.json"
                   className={`${footerLinkClass} inline-flex items-center gap-1`}
                 >
@@ -89,7 +90,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={`${import.meta.env.BASE_URL}corpus-raw.json`}
+                  href={withBase("corpus-raw.json")}
                   download="too-early-raw-candidates.json"
                   className={`${footerLinkClass} inline-flex items-center gap-1`}
                 >
