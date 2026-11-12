@@ -4,14 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
+    <script>
+      (() => {
+        try {
+          const key = "too-early-theme";
+          const stored = localStorage.getItem(key);
+          const theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", theme === "dark" ? "#0b0b0b" : "#ffffff");
+        } catch {
+          // default to the light theme
+        }
+      })();
+    </script>
     <meta
       name="description"
-      content="Too Early is a curated archive of confident Hacker News predictions about products that went on to win anyway. Real comments, real receipts, 2007–2026."
+      content="Too Early is a curated archive of 248 confident Hacker News predictions about products that won, products that lost, and the critics who called it. Real comments, linked receipts, 2007–2026."
     />
-    <meta property="og:title" content="Too Early — Hacker News' most confident wrong calls" />
+    <meta property="og:title" content="Too Early — Hacker News' most confident calls, checked" />
     <meta
       property="og:description"
-      content="A curated archive of HN comments that called it wrong. Real quotes, linked receipts, 2007–2026."
+      content="A two-sided archive of HN confidence: the misses, the hits, and the receipts. Real quotes, linked comments, 2007–2026."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://thebigbone.github.io/too-early/" />
@@ -20,14 +41,14 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://thebigbone.github.io/too-early/og.png" />
-    <meta name="twitter:title" content="Too Early — Hacker News' most confident wrong calls" />
+    <meta name="twitter:title" content="Too Early — Hacker News' most confident calls, checked" />
     <meta
       name="twitter:description"
-      content="A curated archive of HN comments that called it wrong. Real quotes, linked receipts, 2007–2026."
+      content="A two-sided archive of HN confidence: the misses, the hits, and the receipts. Real quotes, linked comments, 2007–2026."
     />
     <link rel="canonical" href="https://thebigbone.github.io/too-early/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Too Early — Hacker News' most confident wrong calls</title>
+    <title>Too Early — Hacker News' most confident calls, checked</title>
   </head>
   <body>
     <div id="root"></div>

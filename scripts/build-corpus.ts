@@ -105,14 +105,19 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
+const missCount = entries.filter((entry) => (entry.collection ?? "miss") === "miss").length;
+const hitCount = entries.length - missCount;
+
 const corpus = {
   name: "Too Early",
   description:
-    "A curated corpus of Hacker News comments that confidently dismissed products which later succeeded.",
+    "A two-sided corpus of confident Hacker News calls: products that won despite the skepticism, products that failed as predicted, and the receipts for both.",
   source:
     "Hacker News. Comment text and metadata retrieved from the official Hacker News Firebase API. Each entry links to its comment permalink.",
   years: `${Math.min(...entries.map((entry) => entry.year))}-${Math.max(...entries.map((entry) => entry.year))}`,
   count: entries.length,
+  wrongCalls: missCount,
+  rightCalls: hitCount,
   categories: categories.filter((category) => category !== "All"),
   entries: entries
     .slice()
@@ -121,6 +126,7 @@ const corpus = {
       const comment = byId.get(entry.id)!;
       return {
         ...entry,
+        collection: entry.collection ?? "miss",
         verified: {
           author: comment.author,
           date: comment.date,
@@ -145,6 +151,8 @@ const yearSummary = [...years.entries()]
   .map(([year, count]) => `${year}:${count}`)
   .join(" ");
 
-console.log(`Corpus valid: ${entries.length} entries, ${categories.length - 1} categories.`);
+console.log(
+  `Corpus valid: ${entries.length} entries (${missCount} wrong / ${hitCount} right), ${categories.length - 1} categories.`,
+);
 console.log(`Years: ${yearSummary}`);
 console.log(`Wrote public/corpus.json (${(JSON.stringify(corpus).length / 1024).toFixed(0)} KB).`);

@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run build:corpus && tsc -b && vite build",
-    "build:corpus": "tsx scripts/build-corpus.ts",
+    "build:corpus": "npm run merge:agents && tsx scripts/build-corpus.ts",
     "preview": "vite preview",
     "check": "tsc -b --noEmit",
-    "validate:data": "tsx scripts/build-corpus.ts",
-    "verify:hn": "tsx scripts/verify-hn.ts"
+    "validate:data": "npm run build:corpus",
+    "verify:hn": "npm run merge:agents && tsx scripts/verify-hn.ts",
+    "merge:agents": "tsx scripts/merge-agents.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

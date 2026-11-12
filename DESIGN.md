@@ -49,6 +49,24 @@ typography:
 
 Too Early is a quiet, editorial reading surface for a loud archive. It should feel like a well-made index card box, not a news site: generous white space, thin rules, compact metadata, and one strong quote per card.
 
+## Themes
+
+- Light is the default. Dark mode is a true low-light surface, not an inverted afterthought.
+- Theme is applied through `data-theme` on `<html>`; an inline head script prevents the flash.
+- The system preference is the default; the header toggle stores an explicit light/dark preference in local storage.
+- Dark tokens: page `#0B0B0B`, surface `#111111`, subtle `#161616`, line `#262626`, primary content `#F5F5F5`, secondary `#A3A3A3`, accent `#8AB4FF`.
+- The hero card and footer use a fixed ink surface (`#151515` / `#FFFFFF`) in both themes, so the editorial black endcap stays intentional.
+- Use `color-scheme` so native controls follow the theme.
+
+## Two-sided archive
+
+- The archive holds two kinds of receipts: **wrong calls** (the product won) and **right calls** (the product failed).
+- The collection switcher sits above the category filters: All receipts, Wrong calls, Right calls.
+- Right-call cards carry a neutral inverted `Right call` badge; the card footer switches from “Reality check” to “What happened.”
+- The dialog switches its note label from “Why it aged badly” to “Why the critic was right.”
+- The hero keeps the canonical Dropbox miss, but exposes the right-call collection as a first-class action with its count.
+- Counts are always visible in the hero, the collection tabs, the method section, and the footer.
+
 ## Colors
 
 - Use `page-default` for the page and `surface-default` for cards and the dialog.

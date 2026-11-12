@@ -31,8 +31,32 @@
   --color-content-inverse: #ffffff;
   --color-content-accent: #1f78ff;
   --color-line-default: #ededed;
+  --color-ink: #151515;
+  --color-ink-content: #ffffff;
 
   --shadow-2xs: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-page-default: #0b0b0b;
+  --color-surface-default: #111111;
+  --color-surface-subtle: #161616;
+  --color-fill-default: #111111;
+  --color-fill-subtle: #161616;
+  --color-fill-strong: #222222;
+  --color-fill-inverse: #f5f5f5;
+  --color-content-primary: #f5f5f5;
+  --color-content-secondary: #a3a3a3;
+  --color-content-muted: #737373;
+  --color-content-extra-muted: #333333;
+  --color-content-inverse: #111111;
+  --color-content-accent: #8ab4ff;
+  --color-line-default: #262626;
+  --color-fill-accent: #10243f;
+  --color-ink: #151515;
+  --color-ink-content: #ffffff;
+  --shadow-2xs: 0 1px 2px 0 rgb(0 0 0 / 0.35);
 }
 
 @utility container-7xl {

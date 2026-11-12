@@ -1,14 +1,16 @@
 import { cn } from "../lib/cn";
-import { ShuffleIcon } from "./Icons";
+import { MoonIcon, ShuffleIcon, SunIcon } from "./Icons";
 
 type HeaderProps = {
   onRandom: () => void;
+  theme: "light" | "dark";
+  onToggleTheme: () => void;
 };
 
 const navLinkClass =
   "inline-flex h-8 items-center rounded-lg px-3 text-sm text-content-secondary transition-colors hover:bg-fill-strong hover:text-content-primary";
 
-export function Header({ onRandom }: HeaderProps) {
+export function Header({ onRandom, theme, onToggleTheme }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-line-default bg-page-default">
       <div className="container-7xl flex h-14 items-center justify-between gap-4">
@@ -37,6 +39,19 @@ export function Header({ onRandom }: HeaderProps) {
           <a href="#method" className={cn(navLinkClass, "hidden sm:inline-flex")}>
             Method
           </a>
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            className={cn(navLinkClass, "w-8 justify-center px-0")}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {theme === "dark" ? (
+              <SunIcon className="size-4" />
+            ) : (
+              <MoonIcon className="size-4" />
+            )}
+          </button>
           <button
             type="button"
             onClick={onRandom}

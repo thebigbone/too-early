@@ -1,43 +1,10 @@
-export const categories = [
-  "All",
-  "AI",
-  "Consumer",
-  "Crypto & fintech",
-  "Developer tools",
-  "Infrastructure",
-  "Marketplaces",
-  "Productivity",
-  "Social",
-] as const;
+import { generatedEntries } from "./generated-entries";
+import type { Entry } from "./types";
 
-export type Category = (typeof categories)[number];
+export { categories, collectionOf } from "./types";
+export type { Category, Collection, Entry, Verdict } from "./types";
 
-export type Verdict =
-  | "Clean miss"
-  | "Wrong on the outcome"
-  | "Right about the risk"
-  | "A little too early";
-
-export type Entry = {
-  id: number;
-  project: string;
-  year: number;
-  date: string;
-  author: string;
-  category: Exclude<Category, "All">;
-  verdict: Verdict;
-  cardQuote: string;
-  quote: string;
-  storyTitle: string;
-  hnUrl: string;
-  outcome: string;
-  outcomeDetail: string;
-  note: string;
-  sourceLabel: string;
-  sourceUrl: string;
-};
-
-export const entries: Entry[] = [
+const coreEntries: Entry[] = [
   {
     id: 9224,
     project: "Dropbox",
@@ -945,6 +912,34 @@ This very issue is being addressed in ClearLinux: http://sched.co/3YD5`,
     sourceUrl: "https://en.wikipedia.org/wiki/Docker_(software)",
   },
 ];
+
+// These original picks are superseded by sharper receipts in
+// data/agents/worst-critic.json. Keeping the set here makes the curation
+// decision explicit and reversible.
+const supersededCoreIds = new Set([
+  304561, // Stack Overflow
+  722401, // Airbnb
+  12790204, // Next.js
+  23323755, // Supabase
+  10217888, // Notion
+  3833296, // Firebase
+  4597994, // TypeScript
+  5791776, // React
+  7043354, // Ethereum
+  8541195, // Slack
+  8376087, // Airtable
+  10685571, // Figma
+  32555939, // Stable Diffusion
+  33810661, // ChatGPT
+  37888675, // Cursor
+  6671583, // Snapchat
+]);
+
+const visibleCoreEntries = coreEntries.filter(
+  (entry) => !supersededCoreIds.has(entry.id),
+);
+
+export const entries: Entry[] = [...visibleCoreEntries, ...generatedEntries];
 
 export const years = entries.map((entry) => entry.year);
 export const yearRange = `${Math.min(...years)}\u2013${Math.max(...years)}`;

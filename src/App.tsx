@@ -7,13 +7,31 @@ import { Hero } from "./components/Hero";
 import { Method } from "./components/Method";
 import {
   categories,
+  collectionOf,
   decadeFilters,
   entries,
   type Category,
+  type Collection,
   type Entry,
 } from "./data/entries";
 
 const PAGE_SIZE = 12;
+const THEME_KEY = "too-early-theme";
+
+type Theme = "light" | "dark";
+type CollectionFilter = "all" | Collection;
+
+const getInitialTheme = (): Theme => {
+  try {
+    const stored = window.localStorage.getItem(THEME_KEY);
+    if (stored === "light" || stored === "dark") return stored;
+  } catch {
+    // ignore storage access failures
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
 
 const isCategory = (value: string | null): value is Category =>
   categories.includes(value as Category);
@@ -39,9 +57,31 @@ export default function App() {
     const value = initial.get("sort");
     return isSort(value) ? value : "newest";
   });
+  const [collection, setCollection] = useState<CollectionFilter>(() => {
+    const value = initial.get("collection");
+    return value === "miss" || value === "hit" ? value : "all";
+  });
   const [visible, setVisible] = useState(PAGE_SIZE);
   const [selected, setSelected] = useState<Entry | null>(null);
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "dark" ? "#0b0b0b" : "#ffffff");
+    try {
+      window.localStorage.setItem(THEME_KEY, theme);
+    } catch {
+      // ignore storage access failures
+    }
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
+  }, []);
 
   const openFromHash = useCallback(() => {
     const match = window.location.hash.match(/^#c-(\d+)$/);
@@ -62,16 +102,17 @@ export default function App() {
     if (category !== "All") params.set("category", category);
     if (era !== "all") params.set("era", era);
     if (sort !== "newest") params.set("sort", sort);
+    if (collection !== "all") params.set("collection", collection);
 
     const search = params.toString();
     const hash = selected ? `#c-${selected.id}` : "";
     const next = `${window.location.pathname}${search ? `?${search}` : ""}${hash}`;
     window.history.replaceState(null, "", next);
-  }, [query, category, era, sort, selected]);
+  }, [query, category, era, sort, collection, selected]);
 
   useEffect(() => {
     setVisible(PAGE_SIZE);
-  }, [query, category, era, sort]);
+  }, [query, category, era, sort, collection]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -110,6 +151,7 @@ export default function App() {
 
     return entries
       .filter((entry) => {
+        if (collection !== "all" && collectionOf(entry) !== collection) return false;
         if (category !== "All" && entry.category !== category) return false;
         if (entry.year < range.start || entry.year > range.end) return false;
         if (!value) return true;
@@ -135,16 +177,21 @@ export default function App() {
         if (sort === "oldest") return a.year - b.year || a.id - b.id;
         return b.year - a.year || b.id - a.id;
       });
-  }, [query, category, era, sort]);
+  }, [query, category, era, sort, collection]);
 
   const hasFilters =
-    query.trim() !== "" || category !== "All" || era !== "all" || sort !== "newest";
+    query.trim() !== "" ||
+    category !== "All" ||
+    era !== "all" ||
+    sort !== "newest" ||
+    collection !== "all";
 
   const clearFilters = useCallback(() => {
     setQuery("");
     setCategory("All");
     setEra("all");
     setSort("newest");
+    setCollection("all");
     setVisible(PAGE_SIZE);
   }, []);
 
@@ -158,6 +205,24 @@ export default function App() {
     setSelected(pick);
   }, [filtered]);
 
+  const missCount = useMemo(
+    () => entries.filter((entry) => collectionOf(entry) === "miss").length,
+    [],
+  );
+  const hitCount = entries.length - missCount;
+
+  const showCollection = useCallback((next: CollectionFilter) => {
+    setCollection(next);
+    setVisible(PAGE_SIZE);
+    requestAnimationFrame(() => {
+      document.getElementById("archive")?.scrollIntoView();
+    });
+  }, []);
+
+  const showRightCalls = useCallback(() => {
+    showCollection("hit");
+  }, [showCollection]);
+
   const featured = entries.find((entry) => entry.id === 9224) ?? entries[0];
 
   return (
@@ -169,13 +234,20 @@ export default function App() {
         Skip to the archive
       </a>
 
-      <Header onRandom={randomEntry} />
+      <Header
+        onRandom={randomEntry}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
 
       <main className="flex-1">
         <Hero
           featured={featured}
+          missCount={missCount}
+          hitCount={hitCount}
           onOpenFeatured={() => openEntry(featured)}
-          onRandom={randomEntry}
+          onBrowseAll={() => showCollection("all")}
+          onShowRightCalls={showRightCalls}
         />
         <Archive
           query={query}
@@ -186,6 +258,10 @@ export default function App() {
           onEraChange={setEra}
           sort={sort}
           onSortChange={setSort}
+          collection={collection}
+          onCollectionChange={setCollection}
+          missCount={missCount}
+          hitCount={hitCount}
           filtered={filtered}
           visible={visible}
           onShowMore={() => setVisible((value) => value + PAGE_SIZE)}
@@ -194,7 +270,7 @@ export default function App() {
           searchRef={searchRef}
           hasFilters={hasFilters}
         />
-        <Method />
+        <Method hitCount={hitCount} onShowRightCalls={showRightCalls} />
       </main>
 
       <Footer />

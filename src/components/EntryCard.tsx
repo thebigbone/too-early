@@ -1,4 +1,4 @@
-import type { Entry } from "../data/entries";
+import { collectionOf, type Entry } from "../data/entries";
 import { ArrowUpRightIcon } from "./Icons";
 
 type EntryCardProps = {
@@ -25,9 +25,16 @@ export function EntryCard({ entry, index, onOpen }: EntryCardProps) {
             {entry.date}
           </p>
         </div>
-        <span className="shrink-0 rounded-full border border-line-default px-2 py-0.5 font-mono text-[10px] text-content-secondary">
-          {entry.category}
-        </span>
+        <div className="flex shrink-0 flex-wrap items-center justify-end gap-1.5">
+          {collectionOf(entry) === "hit" ? (
+            <span className="rounded-full bg-fill-inverse px-2 py-0.5 font-mono text-[10px] text-content-inverse">
+              Right call
+            </span>
+          ) : null}
+          <span className="rounded-full border border-line-default px-2 py-0.5 font-mono text-[10px] text-content-secondary">
+            {entry.category}
+          </span>
+        </div>
       </div>
 
       <blockquote className="mt-5 text-lg leading-snug text-pretty text-content-primary">
@@ -45,7 +52,9 @@ export function EntryCard({ entry, index, onOpen }: EntryCardProps) {
       </p>
 
       <div className="mt-auto border-t border-line-default pt-4">
-        <p className="font-mono text-[10px] text-content-secondary">Reality check</p>
+        <p className="font-mono text-[10px] text-content-secondary">
+          {collectionOf(entry) === "hit" ? "What happened" : "Reality check"}
+        </p>
         <p className="mt-1 text-sm leading-snug text-content-primary">{entry.outcome}</p>
         <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-content-secondary transition-colors group-hover:text-content-primary">
           Read the receipt

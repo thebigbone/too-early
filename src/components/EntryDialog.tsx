@@ -1,6 +1,6 @@
 import { Dialog } from "@base-ui/react/dialog";
 import { useEffect, useState } from "react";
-import type { Entry } from "../data/entries";
+import { collectionOf, type Entry } from "../data/entries";
 import { CheckIcon, CloseIcon, LinkIcon, ArrowUpRightIcon } from "./Icons";
 
 type EntryDialogProps = {
@@ -42,7 +42,7 @@ export function EntryDialog({ entry, onClose }: EntryDialogProps) {
       }}
     >
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 z-50 bg-fill-inverse/40" />
+        <Dialog.Backdrop className="fixed inset-0 z-50 bg-ink/40" />
         <Dialog.Popup className="fixed left-1/2 top-1/2 z-50 max-h-[calc(100dvh-2rem)] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-surface-default shadow-xl outline-none ring-1 ring-line-default">
           <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-line-default bg-surface-default px-5 py-4 sm:px-7">
             <div className="min-w-0">
@@ -118,7 +118,9 @@ export function EntryDialog({ entry, onClose }: EntryDialogProps) {
 
             <div className="mt-6">
               <p className="font-mono text-[10px] text-content-secondary">
-                Why it aged badly
+                {collectionOf(entry) === "hit"
+                  ? "Why the critic was right"
+                  : "Why it aged badly"}
               </p>
               <p className="mt-2 text-sm leading-relaxed text-content-secondary text-pretty">
                 {entry.note}

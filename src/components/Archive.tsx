@@ -3,6 +3,7 @@ import {
   categories,
   decadeFilters,
   type Category,
+  type Collection,
   type Entry,
 } from "../data/entries";
 import { cn } from "../lib/cn";
@@ -10,6 +11,7 @@ import { ChevronDownIcon, SearchIcon } from "./Icons";
 import { EntryCard } from "./EntryCard";
 
 export type SortKey = "newest" | "oldest" | "az";
+export type CollectionFilter = "all" | Collection;
 
 type ArchiveProps = {
   query: string;
@@ -20,6 +22,10 @@ type ArchiveProps = {
   onEraChange: (value: string) => void;
   sort: SortKey;
   onSortChange: (value: SortKey) => void;
+  collection: CollectionFilter;
+  onCollectionChange: (value: CollectionFilter) => void;
+  missCount: number;
+  hitCount: number;
   filtered: Entry[];
   visible: number;
   onShowMore: () => void;
@@ -41,6 +47,10 @@ export function Archive({
   onEraChange,
   sort,
   onSortChange,
+  collection,
+  onCollectionChange,
+  missCount,
+  hitCount,
   filtered,
   visible,
   onShowMore,
@@ -60,8 +70,8 @@ export function Archive({
           Pick a receipt.
         </h2>
         <p className="mt-4 text-base leading-relaxed text-content-secondary text-pretty">
-          Search by company, author, or the exact words that aged badly. Every
-          entry links back to the original Hacker News thread.
+          Search by company, author, or the exact words that aged badly&mdash;or
+          well. Every entry links back to the original Hacker News thread.
         </p>
       </div>
 
@@ -87,6 +97,42 @@ export function Archive({
           >
             /
           </kbd>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-1 rounded-lg border border-line-default bg-fill-default p-1">
+          {(
+            [
+              { value: "all", label: "All receipts", count: missCount + hitCount },
+              { value: "miss", label: "Wrong calls", count: missCount },
+              { value: "hit", label: "Right calls", count: hitCount },
+            ] as const
+          ).map((item) => {
+            const active = collection === item.value;
+            return (
+              <button
+                key={item.value}
+                type="button"
+                aria-pressed={active}
+                onClick={() => onCollectionChange(item.value)}
+                className={cn(
+                  "inline-flex h-7 items-center gap-1.5 rounded-md px-2.5 text-xs font-medium transition-colors",
+                  active
+                    ? "bg-fill-inverse text-content-inverse"
+                    : "text-content-secondary hover:bg-fill-strong hover:text-content-primary",
+                )}
+              >
+                {item.label}
+                <span
+                  className={cn(
+                    "font-mono text-[10px] tabular-nums",
+                    active ? "opacity-60" : "text-content-secondary",
+                  )}
+                >
+                  {item.count}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -201,7 +247,13 @@ export function Archive({
         </>
       ) : (
         <div className="mt-8 rounded-xl border border-line-default bg-fill-subtle px-6 py-16 text-center">
-          <p className="text-lg font-medium tracking-tight">No receipts match that.</p>
+          <p className="text-lg font-medium tracking-tight">
+            {collection === "hit"
+              ? "No right calls match that."
+              : collection === "miss"
+                ? "No wrong calls match that."
+                : "No receipts match that."}
+          </p>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-content-secondary text-pretty">
             Try a different company, a shorter search, or clear the filters. The
             archive only contains real comments, so some searches come up empty.

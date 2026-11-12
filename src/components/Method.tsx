@@ -9,7 +9,7 @@ const rules = [
   {
     number: "02",
     title: "Require a real outcome.",
-    body: "Every product has a verifiable success marker: an IPO, an acquisition, durable scale, or category dominance. The link is in every entry. Outcomes are current as of 2026.",
+    body: "Every entry has a verifiable outcome: an IPO, an acquisition, durable scale, category dominance, shutdown, bankruptcy, or discontinuation. The link is in every entry. Outcomes are current as of 2026.",
   },
   {
     number: "03",
@@ -18,12 +18,17 @@ const rules = [
   },
   {
     number: "04",
-    title: "Leave room for nuance.",
-    body: "Some critics were right about the risk and wrong about the outcome. The verdict badge says which. Hindsight is the bit, not the whole argument.",
+    title: "Keep both sides of the ledger.",
+    body: "Right calls are comments that correctly predicted a failure before it happened. Some critics were right about the risk and wrong about the outcome; the verdict badge says which.",
   },
 ];
 
-export function Method() {
+type MethodProps = {
+  hitCount: number;
+  onShowRightCalls: () => void;
+};
+
+export function Method({ hitCount, onShowRightCalls }: MethodProps) {
   return (
     <section
       id="method"
@@ -39,7 +44,7 @@ export function Method() {
             <p className="mt-4 text-sm leading-relaxed text-content-secondary text-pretty">
               This is not a claim that Hacker News is dumb. HN is where a lot of
               these products were first seen, argued about, and pushed forward.
-              That is the joke.
+              The archive includes the calls that were right, too.
             </p>
 
             <div className="mt-8 rounded-xl border border-line-default bg-surface-default p-5">
@@ -87,6 +92,25 @@ export function Method() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-10 flex flex-col gap-3 rounded-xl border border-line-default bg-surface-default p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="font-mono text-[10px] text-content-secondary">
+                  The other side of the ledger
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-content-secondary text-pretty">
+                  {hitCount} comments called a failure before it happened. Not
+                  every confident HN take was wrong.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={onShowRightCalls}
+                className="inline-flex h-8 shrink-0 items-center justify-center rounded-lg border border-line-default bg-fill-default px-3 text-xs font-medium text-content-primary transition-colors hover:bg-fill-subtle"
+              >
+                Read the right calls
+              </button>
             </div>
 
             <p className="mt-8 flex flex-wrap items-center gap-2 font-mono text-[10px] text-content-secondary">
