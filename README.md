@@ -45,6 +45,8 @@ npm run verify:hn       # live HN API check + refreshes data/verified.json
 
 The build script merges `data/agents/*.json`, runs `build-corpus.ts`, and validates every quote against the fetched HN data. The last live verification passed `248/248` against the Hacker News API.
 
+A separate **raw candidate pool** of 137 verified comments across 64 projects (2010–2026) is published at `public/corpus-raw.json`. It is deliberately uncurated and is not rendered as cards; it exists for further expansion.
+
 The archive is curated in two collections:
 
 - **Wrong calls** — confident dismissals of products that won.

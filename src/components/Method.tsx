@@ -120,7 +120,18 @@ export function Method({ hitCount, onShowRightCalls }: MethodProps) {
                 download="too-early-corpus.json"
                 className="inline-flex items-center gap-1 underline decoration-content-extra-muted underline-offset-4 transition-colors hover:text-content-primary hover:decoration-content-primary"
               >
-                Download the corpus
+                Download the curated corpus
+                <ArrowUpRightIcon className="size-3" />
+              </a>
+              <span aria-hidden="true" className="text-content-muted">
+                /
+              </span>
+              <a
+                href={`${import.meta.env.BASE_URL}corpus-raw.json`}
+                download="too-early-raw-candidates.json"
+                className="inline-flex items-center gap-1 underline decoration-content-extra-muted underline-offset-4 transition-colors hover:text-content-primary hover:decoration-content-primary"
+              >
+                Raw candidates
                 <ArrowUpRightIcon className="size-3" />
               </a>
             </p>

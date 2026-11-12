@@ -83,7 +83,17 @@ export function Footer() {
                   download="too-early-corpus.json"
                   className={`${footerLinkClass} inline-flex items-center gap-1`}
                 >
-                  Corpus (JSON)
+                  Curated corpus (JSON)
+                  <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`${import.meta.env.BASE_URL}corpus-raw.json`}
+                  download="too-early-raw-candidates.json"
+                  className={`${footerLinkClass} inline-flex items-center gap-1`}
+                >
+                  Raw candidates (JSON)
                   <ArrowUpRightIcon className="size-3" />
                 </a>
               </li>

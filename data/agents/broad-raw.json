@@ -1,0 +1,1376 @@
+{
+  "generatedAt": "2026-11-12",
+  "count": 137,
+  "comments": [
+    {
+      "id": 1897173,
+      "project": "Instagram",
+      "author": "guelo",
+      "date": "2010-11-12",
+      "year": 2010,
+      "text": "meh, Instagram seems pretty useless to me. Google builds more cool stuff in an average month than Instagram ever has.",
+      "storyTitle": "Why Google can’t build Instagram",
+      "hnUrl": "https://news.ycombinator.com/item?id=1897173"
+    },
+    {
+      "id": 2171923,
+      "project": "MongoDB",
+      "author": "sergei",
+      "date": "2011-02-02",
+      "year": 2011,
+      "text": "1. Yes, I recognize that MongoDB will automatically fail over when we go from N nodes in the set to N - 1. But how do I get back to N nodes? That's completely manual. 2. What happens when I read an update that succeeded on the master but then later fails on the slaves?",
+      "storyTitle": "MongoDB vs. Clustrix: Fault Tolerance and Availability",
+      "hnUrl": "https://news.ycombinator.com/item?id=2171923"
+    },
+    {
+      "id": 2174337,
+      "project": "Redis",
+      "author": "weixiyen",
+      "date": "2011-02-03",
+      "year": 2011,
+      "text": "The point of this article is that Redis cannot be the \"one true datastore\". By \"one true datastore\", he means that Redis is the only data store you need in the stack, because it has an append mode that persists data in memory to disk. The author's mistake is that he is setting up a strawman argument. I've yet to hear Redis claiming to be a end all be all solution for data storage. In fact, it would make sense that most production environments use Redis as the non-persistent cache layer backed by an ACID compliant datastore for the time being. The author's second point is that Redis fails \"at scale in production environments\". I'm curious to see some examples here of production Redis failing and I'd like to know how those companies were using Redis. Either way, the scalability debate should wait until 2.2 is released, because 2.2 is supposed to address primarily multi-server Redis instances. I think the main problem is just believing that there can be \"one true datastore\". Different technologies excel at different things. You pick what you want your app to do, and then take a look at the tools given to you and pick the best one for the job. Redis happens to be a great choice for many things, but ACID compliant storage is not really one of them at the moment, although I suppose you could set up 2 Redis instances, one for fast in-memory usage and one that syncs to disk on every command for now. From my experience, Redis is great for the following: - Session storage - basic LRU cache - Publish / subscribe - key value store where you want to manipulate data in the form of common data structures - simple / medium complex queries Redis is not good for: - ACID compliant data storage AND fast in-memory access at the same time (the holy grail) - Complex sql-like queries Right now, if you try to make Redis persistent in the event of a crash (fsync constantly), you will get a performance hit because the writes to disk will be too frequent. Antirez is trying to solve the problem of persistence while still keeping fast in-memory access. The author does not feel like Antirez will succeed here, and became \"angry\", which I find is a bit unreasonable. I personally use Redis in production for what it's currently good for. If the persistence with speed issue is solved, all the better. It's not an all or nothing type of situation. The worst thing the author could do in this situation is to pick SQLite as your one and only data store for the entire stack. There's nothing wrong with having multiple types of datastores. In fact it is the norm and trying to fight against it at this time is kind of pointless.",
+      "storyTitle": "Redis and SQLite: Why wait for good enough?",
+      "hnUrl": "https://news.ycombinator.com/item?id=2174337"
+    },
+    {
+      "id": 2422464,
+      "project": "Dropbox",
+      "author": "kevinpet",
+      "date": "2011-04-08",
+      "year": 2011,
+      "text": "I very much doubt dropbox is insecure by design. Skipjack was insecure by design. Dropbox is (arguably) insecure by oversight, or by lack of thoughtful security design.",
+      "storyTitle": "Dropbox authentication: insecure by design",
+      "hnUrl": "https://news.ycombinator.com/item?id=2422464"
+    },
+    {
+      "id": 2461797,
+      "project": "Dropbox",
+      "author": "donpark",
+      "date": "2011-04-19",
+      "year": 2011,
+      "text": "Three points: 1. Sensationalism aside, Dropbox should review questionable security claims to reduce false sense of security if any. With millions of users, careless words formed out of marketing needs are no longer needed. What Dropbox users need now is more clear picture of what they are giving up to gain Dropbox's services. 2. The weakest security link is the user and their computer, not Dropbox which has enough financial incentives at stake to be diligent security wise. In the end, no computer open to external data or code is safe. What protect most users today is actually not security technologies but cost/benefit ratio to potential attackers, tempered by goal and scale. 99.9999% of Dropbox user data is useless to attackers and cost of mining questionable nuggets out continually expanding sea of data from 20 million users is not a trivial task. 3. While it's true that user must trust Dropbox in the end, some of its security measures could use strengthening even if it's just intended to raise the level of sophistication necessary to steal Dropbox data.",
+      "storyTitle": "Dropbox Lack of Security",
+      "hnUrl": "https://news.ycombinator.com/item?id=2461797"
+    },
+    {
+      "id": 2656361,
+      "project": "Airbnb",
+      "author": "jasonkester",
+      "date": "2011-06-15",
+      "year": 2011,
+      "text": "Actually Airbnb is a terrible name because it conjures up a distasteful (and inaccurate) mental image of what their service provides. An Airbed is a horrible rubber thing that you sleep on at a friend's house that deflates in the night leaving you lying on the floor surrounded by sagginess. Therefore an Airbed-n-breakfast must be a place where you can expect to get that sort of experience, but for a price. That mental picture kept me from even bothering to check out the website the first dozen or so times they made the front page here. I'd wager it's costing them a lot of money from people who simply refuse to check them out because they don't want to sleep on an airbed. Notice that none of the listings on airbnb show anything like a trashed studio apartment where you'll be expected to sleep on an old couch with dead pizza boxes under it, but ask anybody on the street to describe an \"airbed and breakfast\" and that's what you'll get. But if you don't force yourself to ignore the terrible name and give them a shot, you'll never find out. For my money I'd rather be called something nosensical than something off-putting.",
+      "storyTitle": "Investors Pump $90 Million Into Airbnb Clone Wimdu",
+      "hnUrl": "https://news.ycombinator.com/item?id=2656361"
+    },
+    {
+      "id": 3329847,
+      "project": "GitHub",
+      "author": "bradwestness",
+      "date": "2011-12-08",
+      "year": 2011,
+      "text": "Yes, but you still have to install MSysGit or whatever, which is a ridiculously huge download just to do version control requests. Plus, running the commands to generate public and private keys and all that junk is super counter-intuitive, and the default steps recommended on GitHub won't work on my work machine, as Cygwin can't write to the location it wants to create the key files, and once I got to that point, I just decided to use HG.",
+      "storyTitle": "Phil Haack quit Microsoft for GitHub",
+      "hnUrl": "https://news.ycombinator.com/item?id=3329847"
+    },
+    {
+      "id": 3537278,
+      "project": "Heroku",
+      "author": "dasil003",
+      "date": "2012-02-01",
+      "year": 2012,
+      "text": "Sure, but my point is that if you determine you need 100% uptime and you are currently on Heroku, you are going to need to build a complete non-Heroku system to fail over to. At that point should you A) pick another high level PaaS provider and maintain two very different stacks, each of which is commanding a high premium, or B) build on a standard Linux stack that can be deployed to multiple completely separate clouds?",
+      "storyTitle": "Heroku down",
+      "hnUrl": "https://news.ycombinator.com/item?id=3537278"
+    },
+    {
+      "id": 3677622,
+      "project": "Pinterest",
+      "author": "pork",
+      "date": "2012-03-07",
+      "year": 2012,
+      "text": "Let me rephrase GP's comment, since I felt the same thing as them. Allow me to set out a hypothetical. You find that Pinterest's terms are awful, and stage a very successful revolt with your own site, sans the offensive terms. Users flock to your site, and Pinterest dies a sad death. One of the copyright owners of your \"pinned\" content decides to go after you, and decides to sue the pants off you. So you freak out and hire a top-notch lawyer, who will draft a new set of terms for your users to shield you from the liability you now realize you have. Repeat, iterate, and before you know it -- your top-notch lawyer guarantees that you will face no more expensive liability, but you now have the onerous terms set out in practically all sites that allow user-generated content. Basically, these terms allow you to bump the liability from yourself to the user who uploaded it (because they have pinned the pictures in bad faith, in violation of your terms, etc.) So there's really no point railing against the terms -- they aren't going away, and the best you can hope for is very minor modifications of wording with sufficient popular pressure. Good luck on that.",
+      "storyTitle": "Pinterest, We Have a Problem",
+      "hnUrl": "https://news.ycombinator.com/item?id=3677622"
+    },
+    {
+      "id": 3818633,
+      "project": "Instagram",
+      "author": "tjoff",
+      "date": "2012-04-09",
+      "year": 2012,
+      "text": "I think the problem stems from that no one actually have any pictures they want to share on a daily basis (exception might be pictures of babies). Instagram solved it by inventing shareable pictures of nothing. While I can appreciate the idea of a \"daily picture\" (or whatever) in a more diary-form this is a completely different beast than a family photo / vacation photo / group activity photo etc., such photos only get better with time where an instagram is useless a social-minute after it was shot.",
+      "storyTitle": "Instagram is acquired by Facebook",
+      "hnUrl": "https://news.ycombinator.com/item?id=3818633"
+    },
+    {
+      "id": 3938878,
+      "project": "Pinterest",
+      "author": "myko",
+      "date": "2012-05-07",
+      "year": 2012,
+      "text": "Interesting, yes. The aesthetic is very nice. But the Pinterest look seems pretty terrible from a UX perspective.",
+      "storyTitle": "Make your Google+ looks like pinterest！",
+      "hnUrl": "https://news.ycombinator.com/item?id=3938878"
+    },
+    {
+      "id": 4017422,
+      "project": "Cloudflare",
+      "author": "pooriaazimi",
+      "date": "2012-05-24",
+      "year": 2012,
+      "text": "... and yet I've seen CloudFlare cache fail many times (like a couple days ago, a story on HN front page about airplane bathrooms having ashtrays: http://news.ycombinator.com/item?id=4005906 ). Still a great service though, they would be big someday.",
+      "storyTitle": "CloudFlare helps MoogMusic.com survive the Google.com doodle search traffic",
+      "hnUrl": "https://news.ycombinator.com/item?id=4017422"
+    },
+    {
+      "id": 4180799,
+      "project": "Heroku",
+      "author": "ahmedaly",
+      "date": "2012-06-30",
+      "year": 2012,
+      "text": "I can't believe that guys at heroku are not ready for such situations! They rely ONLY on virginia's instances because its the cheapest, without caring about customers.. or thinking of replicating their services in multiple locations for such issues!",
+      "storyTitle": "Heroku is down again",
+      "hnUrl": "https://news.ycombinator.com/item?id=4180799"
+    },
+    {
+      "id": 4448309,
+      "project": "MongoDB",
+      "author": "cmer",
+      "date": "2012-08-29",
+      "year": 2012,
+      "text": "My experience with MongoDB hasn't been the most pleasant in a write-heavy environment. Until they fix the write lock properly, MongoDB is pretty much useless for many high throughput applications in my opinion... The new DB level locking introduced in this release is a joke. There's not much difference between that and the old global write lock unless you split your database in dozens of smaller ones. What a pain. I wish they'd just stop pretending and addressed the issue properly once and for all. I really want to like and use MongoDB because the way data is represented and how it can be queried is awesome.",
+      "storyTitle": "MongoDB 2.2.0 Released",
+      "hnUrl": "https://news.ycombinator.com/item?id=4448309"
+    },
+    {
+      "id": 4535544,
+      "project": "Cloudflare",
+      "author": "buro9",
+      "date": "2012-09-18",
+      "year": 2012,
+      "text": "I also had problems when I tried CloudFlare. Different problems, but it cost me a few days contacting users and apologising before I U-turned and switched the nameservers back. I unfortunately use PayPal and their Instant Notification thing, basically a callback to a web page with a POST about the transaction that just happened. Upon receiving the POST I can then do things like notify the customer, dispatch goods, award virtual goods, etc. The problem I had was that after putting my website (in the London Linode datacenter) behind CloudFlare, PayPal started randomly failing to reach the callback page. PayPal, being PayPal, failed silently for a few days before finally sending an email to say that they couldn't notify me of transactions. I figured it out just before that though, because users were getting the CloudFlare \"site offline\" message. The pages on my site are 100% dynamic, so nothing was cached by the feature that keeps a site online. My biggest problem with CloudFlare was visibility for debugging: I had no visibility. If it wasn't for my users letting me know and PayPal emailing me confirming what I thought... I wouldn't have known. Even then it took too long to find out, over a week from when it started to fail silently. According to Linode there was no downtime in that period, and according to my server logs load was never above average and there was no reason it should've been unable to be reached. Did I submit a ticket? I submitted some questions beforehand and got back answers that were very friendly but not technically detailed. That's also how I found the interface, I couldn't debug using CloudFlare, no way to answer the questions \"What is happening? Why is it happening?\". So no, when I figured it out I wasn't going to stay with CloudFlare as even if it was resolved I would still lack visibility for future problem-solving. In the end it was costing me goodwill with my users. I wanted things you didn't provide: How often did CloudFlare fail to contact my network? Can I see a chart of such failures over time? What were the failure error codes and times so that I can cross-reference them to my logs? Basically: I wanted transparency so I could have confidence in the service, and detail so that I can debug failures when they occur. And I was going to email this as it's really a \"just to let you know\". But you have no email in your HN profile, and looking through the support emails I had I see tenderapp.com and can't make a guess what your email address may be, and I pinged you on Twitter but no response and it's very late here... so posting it so you can see. If you add ways for developers to debug issues when using CloudFlare then I may well be tempted back in the future. The fundamental premise is a good one and I really wanted it to work (paid for the Enterprise level, had every intention of using it). But when failing silently costs real money and customer goodwill, I don't feel I had a choice but to U-turn very rapidly. As soon as I was off CloudFlare, PayPal Instant Payment Notification worked again and there hasn't been a single failure since.",
+      "storyTitle": "How to Launch a 65Gbps DDoS, and How to Stop One",
+      "hnUrl": "https://news.ycombinator.com/item?id=4535544"
+    },
+    {
+      "id": 4571572,
+      "project": "MongoDB",
+      "author": "pbharrin",
+      "date": "2012-09-25",
+      "year": 2012,
+      "text": "YES!!!! We stopped using it in production and moved to Solr. I don't hate MongoDB but I think it is overhyped. The fact that 10gen raised 42m is crazy. I would be surprised if those investors got any return greater than the money they invested.",
+      "storyTitle": "Does everyone hate MongoDB?",
+      "hnUrl": "https://news.ycombinator.com/item?id=4571572"
+    },
+    {
+      "id": 5041332,
+      "project": "Instacart",
+      "author": "OGinparadise",
+      "date": "2013-01-11",
+      "year": 2013,
+      "text": "\" It's great that if I crave Ben&Jerry's ice cream, I can buy it and have it delivered in under 3 hours. \" Every time I wanted ice cream, it was in my hands in a matter of minutes not hours :). Detergents, soaps, medicines etc can be bought via Amazon, Drugstore.com etc. Fruits and veggies...you actually want to see before buying them. I don't think this will scale. Prices will have to be a lot more expensive than normal grocery shopping, so adoption will be limited. Even if it takes just one hour, the person doing the shopping has to be paid, instacart has to make a profit and that will jack up the price. I understand the convenience factor, but for the vast majority of people it's not a good tradeoff. That said, Instacart can become a niche player and still make money. What's up with Instacart not letting you browse without logging in?",
+      "storyTitle": "Instacart adds Trader Joe's",
+      "hnUrl": "https://news.ycombinator.com/item?id=5041332"
+    },
+    {
+      "id": 5358395,
+      "project": "GitHub",
+      "author": "kibwen",
+      "date": "2013-03-11",
+      "year": 2013,
+      "text": "I think the bigger problem here is that Github is rather useless at gracefully abandoning a project. The usual solution is for an interested maintainer to fork the project and continue, but with any sufficiently popular project it's impossible to tell which forks, if any, have momentum. I feel like there's got to be a middle ground between the current \"fork in obscurity\" model and the OP's \"commit bits for everyone\" model. But I'm not smart enough to think of what that might entail.",
+      "storyTitle": "The Pull Request Hack",
+      "hnUrl": "https://news.ycombinator.com/item?id=5358395"
+    },
+    {
+      "id": 6602805,
+      "project": "Pinterest",
+      "author": "miguelrochefort",
+      "date": "2013-10-24",
+      "year": 2013,
+      "text": "You have a very naive understanding of economy and \"revenue\". Not all value comes from purchasing goods. In other words, Pinterest is a fad. However, \"things\" (which are a big part of Pinterest) will become the next big thing. The future \"next big things\" in tech/web is quite obvious: - Facebook for Things - Personal inventories - Decentralized \"semantic\" marketplace - Smart contracts - Task management everywhere (the future of operating systems) - The death of privacy - Cryptocurrencies - Personal democracy (filter bubble on steroid) - Universal \"trust\" score - The death of the government (at last) Of course, all of this is intuitive speculation. But I wouldn't be surprised to be right. Actually, it would be surprising if I were wrong.",
+      "storyTitle": "Pinterest Raises $225 Million at $3.8 Billion Valuation",
+      "hnUrl": "https://news.ycombinator.com/item?id=6602805"
+    },
+    {
+      "id": 6672082,
+      "project": "Snapchat",
+      "author": "dakrisht",
+      "date": "2013-11-04",
+      "year": 2013,
+      "text": "Totally. It's how the wind blows these days in \"tech\". It's reminiscent of a bubble with all of these mobile apps calling themselves \"companies\" when most aren't even profitable. It reminds of the early 2000s when \"how many eyeballs do you get monthly\" was the question of the day. Does Pinterest really need $400M+ in venture to operate? What are they doing over there? Advanced robotics with neural implants? Burn rate of $30M a month? Utter bullshit. Like I said before, VC's aren't dumb but they're also not very smart, most at least - they don't need to be. They flock to whatever's hot and popular (trendy) and invest. Their exit strategy is simple: a highly overvalued IPO where the public market will buy based on hype or an acquisition. These unsustainable trends in extremely overvalued companies/apps will continue for a while, unfortunately. Until the shit hits the fan and one of these giants of venture capital infusion tank. Unfortunately, it's so much more than an issue of Snapchat being worthless, it's a large chunk of the tech community today being generally worthless by looking for the EASY WAY OUT - building some stupid app, getting 5M+ users for a few years of engagement and raising large rounds and cashing out. There's no intrinsic value of any kind in this. It wasn't like this before the App Store. There is still great technology being developed out there, but most people (and human nature in general) flocks to the easy way out, the replication factor, globalization, the art of copying something, or as Peter Thiel would say\" \"the 1 to n of globalization.\"",
+      "storyTitle": "Snapchat is Intrinsically Worthless",
+      "hnUrl": "https://news.ycombinator.com/item?id=6672082"
+    },
+    {
+      "id": 6789970,
+      "project": "GitLab",
+      "author": "Touche",
+      "date": "2013-11-24",
+      "year": 2013,
+      "text": "Copying and pasting a few dozen commands and one of them is very likely to fail. I've installed GitLab 3 times and something has failed all 3 times. There's no excuse not to provide a tarball that includes (1) both gitlabhq and gitlab-shell (2) all gems needed. Everything else can be apt-get installed, which is fine. But at least provide a tarball of your application's code.",
+      "storyTitle": "GitLab 6.3 released: open-source software to collaborate on code",
+      "hnUrl": "https://news.ycombinator.com/item?id=6789970"
+    },
+    {
+      "id": 6900689,
+      "project": "Heroku",
+      "author": "fat0wl",
+      "date": "2013-12-13",
+      "year": 2013,
+      "text": "How is the performance relative to Heroku though? I have a lot of terrible, inexplicable problems with Heroku (random huge amounts of request queue-ing even at times when our site is below normal load). I think these are all \"noisy neighbor\" issues and I would gladly leapfrog up from one host to another so long as the process isn't much more complicated and the performance is more reliable.",
+      "storyTitle": "Your own mini-Heroku for $5/month",
+      "hnUrl": "https://news.ycombinator.com/item?id=6900689"
+    },
+    {
+      "id": 7123824,
+      "project": "Snapchat",
+      "author": "vezzy-fnord",
+      "date": "2014-01-26",
+      "year": 2014,
+      "text": "Pretty sure Snapchat falls under the definition of the archetypal cash cow. They target teenagers whose minds have not fully developed and sell their info to adults so they can advertise to them more effectively. Frankly I have no sympathy for such people, but I agree that ultimately Snapchat is a useless trend. It will be replaced soon enough.",
+      "storyTitle": "Snapchat’s Success: Connectivity, Easy Media Creation, And Ephemerality",
+      "hnUrl": "https://news.ycombinator.com/item?id=7123824"
+    },
+    {
+      "id": 7132890,
+      "project": "Uber",
+      "author": "silentOpen",
+      "date": "2014-01-27",
+      "year": 2014,
+      "text": "It's about informing Uber's de facto employees that they have liability and must carry appropriate insurance. Should the employee decline to take this responsibility or should Uber fail to appropriately inform their employees, those who have been hurt or killed are left with nothing. To ensure that drivers are insured , Uber has responsibility.",
+      "storyTitle": "Rough patch for Uber service's challenge to taxis",
+      "hnUrl": "https://news.ycombinator.com/item?id=7132890"
+    },
+    {
+      "id": 7432722,
+      "project": "Coinbase",
+      "author": "hendzen",
+      "date": "2014-03-19",
+      "year": 2014,
+      "text": "Coinbase as a wallet is pretty terrible, I agree. But its a good place to convert $ <-> BTC for consumers.",
+      "storyTitle": "Facebook Security Director Joins Bitcoin Startup Coinbase",
+      "hnUrl": "https://news.ycombinator.com/item?id=7432722"
+    },
+    {
+      "id": 8089135,
+      "project": "Coinbase",
+      "author": "starnix17",
+      "date": "2014-07-26",
+      "year": 2014,
+      "text": "Another terrible Coinbase story. A bug in their backend caused a transaction to go through to my bank account, withdraw funds, but not credit me coins. Contacting support yielded no results at all. I had to go through my bank, close my account (which is a nightmare in itself), and get the money refunded via the bank's fraudulent ACH reversal process. I would not trust this company.",
+      "storyTitle": "Coinbase Vault",
+      "hnUrl": "https://news.ycombinator.com/item?id=8089135"
+    },
+    {
+      "id": 8142925,
+      "project": "Ethereum",
+      "author": "midas",
+      "date": "2014-08-06",
+      "year": 2014,
+      "text": "What happens to all the bitcoins that are being sent in now if ethereum fails? In startups, investors almost always have a liquidation preference, which means that if things go south they get their money back first (or at least what's left of it). I haven't heard any mention of this and I'm wondering how this is structured? If the ethereum founders were able to fail spectacularly and still walk away as millionaires that'd be quite a perverse incentive structure!",
+      "storyTitle": "Ethereum pre-sale hits 12.7M$, still 27 days to go",
+      "hnUrl": "https://news.ycombinator.com/item?id=8142925"
+    },
+    {
+      "id": 8143068,
+      "project": "Ethereum",
+      "author": "asdf333",
+      "date": "2014-08-06",
+      "year": 2014,
+      "text": "i think its a bit different b/c ethereum is supposedly useful as the 'fuel that allows apps to utilize the concept of a blockchain' in apps. i suppose the idea is that it 'burns' ethereum to run an app on top of it, so I can see a scenario where ethereum becomes too expensive and businesses that use decide to move to a different fork that is less expensive. I guess the oil analogy works then -- it gets too expensive and alternatives are found. However, its just a matter of forking the codebase and starting another one...kind of like stellar did with ripple.",
+      "storyTitle": "Ethereum pre-sale hits 12.7M$, still 27 days to go",
+      "hnUrl": "https://news.ycombinator.com/item?id=8143068"
+    },
+    {
+      "id": 8622551,
+      "project": "Uber",
+      "author": "DigitalSea",
+      "date": "2014-11-18",
+      "year": 2014,
+      "text": "Uber are not doing themselves any favours the last year or so, wow. Rather than sling words against a company that is already doing a great job at hurting their own image, there are tonnes of decent competitors in the ride sharing space that offer the same kind of service, if not better than what Uber are offering. I recently tried out Lyft for the first time here in Seattle and I must say, it was a much more pleasant experience than I had previously had in my numerous Uber rides. Do not get me wrong, I have not had completely terrible Uber rides, but I have run into instances where Uber drivers have claimed to know shortcuts to get somewhere, only to find themselves lost all while the meter is running on quite a few occasions, I vote with my driver rating, but still. Other reasons to use an alternative to Uber like Lyft is the fact the Lyft app lets you give a driver a tip. Too many times I have been in a situation where I had no cash to tip an Uber driver who helped me carry heavy luggage or items because the app lacks a tip feature. I am not one for jumping on bandwagons, but I really do not like the kind of leadership and image Uber are portraying, not to mention the questionable business practices that were revealed a little while ago. The power of choice is the strongest message we can send Uber that they need to grow up and be a real business. Vote by choosing an alternative if this bothers you like it bothers me.",
+      "storyTitle": "Uber VP: we could spend $1M to take revenge on journalists",
+      "hnUrl": "https://news.ycombinator.com/item?id=8622551"
+    },
+    {
+      "id": 9083072,
+      "project": "Twilio",
+      "author": "jaytaylor",
+      "date": "2015-02-20",
+      "year": 2015,
+      "text": "I don't see any information on Twilio's net expenditures. Am I missing something? What is the significance in taking in $100M in revenue if you had to spend > $100M to get it? Cough BOX Cough Also, how many customers do they have who pay them more than 100-250K/year? Where are these \"big deals\" coming from? In my experience, Twilio was quite expensive (i.e. not cost-effective) compared to other Telephony service providers. I really like their solid platform, and at the same time I'm a little surprised by the IPO move right now. Have they already burned through the $70M in funding they took in 18 months ago?",
+      "storyTitle": "Twilio Positions Itself for an IPO After Logging $100M in 2014 Revenue",
+      "hnUrl": "https://news.ycombinator.com/item?id=9083072"
+    },
+    {
+      "id": 9211266,
+      "project": "GitLab",
+      "author": "akfanta",
+      "date": "2015-03-16",
+      "year": 2015,
+      "text": "\"a bit slower\"? My experience with Gitlab was terrible. It's unbearably slow especially when I try to create a relatively large pull request for review. The pull request comparison tool is not very smart either. Often times I have a big chunk of false change detection. Maybe I was doing it wrong, but I just don't see any advantage of it over the like of Github and Bitbucket.",
+      "storyTitle": "Gogs, an alternative to Gitlab",
+      "hnUrl": "https://news.ycombinator.com/item?id=9211266"
+    },
+    {
+      "id": 9389649,
+      "project": "Slack",
+      "author": "fra",
+      "date": "2015-04-16",
+      "year": 2015,
+      "text": "I don't understand why so many businesses use a product with such a weak SLA as their main mode of communication. Both Hipchat and Slack have terrible uptime guarantees, and you should stay away from them.",
+      "storyTitle": "Slack Raises $160M Series E at $2.8B Valuation",
+      "hnUrl": "https://news.ycombinator.com/item?id=9389649"
+    },
+    {
+      "id": 9395256,
+      "project": "GitLab",
+      "author": "M8",
+      "date": "2015-04-17",
+      "year": 2015,
+      "text": "The major flaw of GitLab is using Git. After having used something as logical as Mercurial it's kinda hard to switch. Besides I don't care about social and Torvalds-hype.",
+      "storyTitle": "BitBucket vs. GitLab.com",
+      "hnUrl": "https://news.ycombinator.com/item?id=9395256"
+    },
+    {
+      "id": 9414497,
+      "project": "React",
+      "author": "anorborg",
+      "date": "2015-04-21",
+      "year": 2015,
+      "text": "I find it odd that a majority of the articles and documentation about React Native fail to mention upfront that Android development isn't available yet. While this article does mention that fact, it seems weird to me to push a cross-platform solution when only one platform is available.",
+      "storyTitle": "React Native: Facebook's New JavaScript Library Fix for Mobile App Development",
+      "hnUrl": "https://news.ycombinator.com/item?id=9414497"
+    },
+    {
+      "id": 9463277,
+      "project": "Airbnb",
+      "author": "sukilot",
+      "date": "2015-04-30",
+      "year": 2015,
+      "text": "AirBnB refunds you when they fail to deliver the advertised product... Right? Or do they just keep your money and tell you find a legal hotel somewhere else next time?",
+      "storyTitle": "'I've never seen anything like it': Airbnb renters leave Calgary home trashed",
+      "hnUrl": "https://news.ycombinator.com/item?id=9463277"
+    },
+    {
+      "id": 9527557,
+      "project": "Airbnb",
+      "author": "msoad",
+      "date": "2015-05-11",
+      "year": 2015,
+      "text": "In my recent visit to Seattle I settled down for a hotel. Airbnb were too expensive for two people. Maybe I was booking too late though",
+      "storyTitle": "Airbnb Grows to a Million Rooms, and Hotel Rivals Are Quiet, for Now",
+      "hnUrl": "https://news.ycombinator.com/item?id=9527557"
+    },
+    {
+      "id": 9746436,
+      "project": "Stripe",
+      "author": "GBond",
+      "date": "2015-06-19",
+      "year": 2015,
+      "text": "Is it me of posting/commenting on HN has become the default method of resolving a Stripe issue when all normal channels fail?",
+      "storyTitle": "Stripe Is the New PayPal",
+      "hnUrl": "https://news.ycombinator.com/item?id=9746436"
+    },
+    {
+      "id": 10026915,
+      "project": "Ethereum",
+      "author": "throwaway19345",
+      "date": "2015-08-08",
+      "year": 2015,
+      "text": "Indeed Ethereum is a scam. Investors who purchased Ether credits from Ethereum were in fact purchasing what amounts to equity in the Ethereum company. If there was any doubt that this was illegal they went to great effort to create a Swiss company and then immediately dissolve it. Kraken and the CEO Jesse Powell are accessories after the fact.",
+      "storyTitle": "Ethereum Cloud Mining for Dummies",
+      "hnUrl": "https://news.ycombinator.com/item?id=10026915"
+    },
+    {
+      "id": 10029131,
+      "project": "Ethereum",
+      "author": "chrispeel",
+      "date": "2015-08-09",
+      "year": 2015,
+      "text": "Vitalik Buterin and others have been very clear that Ethereum may fail completely and that it's an experiment. Others ( https://twitter.com/NickSzabo4/status/495300992049479680 ) widely acknowledge that Ethereum is the most technically ambitious cryptocurrency since Bitcoin; it's not in the same category of coins which changed a parameter and created a new coin. I'm the organizer of the Silicon Valley Ethereum meetup; I've offered a chance to Greg Maxwell, and Austin Hill the chance to talk to us and give a coherent critique of Ethereum; they did not take me up on the offer (We had Matthieu Riou give a brief critique of Ethereum at our meetup; see https://www.youtube.com/watch?v=BwPulJKP1_Y ). I'd be very happy for a coherent and respectful critique of Ethereum from one of you at one of our meetups; you're welcome to contact me; see http://www.meetup.com/EthereumSiliconValley/",
+      "storyTitle": "Ethereum Cloud Mining for Dummies",
+      "hnUrl": "https://news.ycombinator.com/item?id=10029131"
+    },
+    {
+      "id": 10819460,
+      "project": "React",
+      "author": "albemuth",
+      "date": "2015-12-31",
+      "year": 2015,
+      "text": "It's a single component app and state does not change at all, in fact, we should be skeptical of React too, terrible for static HTML.",
+      "storyTitle": "React Router 2.0.0",
+      "hnUrl": "https://news.ycombinator.com/item?id=10819460"
+    },
+    {
+      "id": 13824659,
+      "project": "Instacart",
+      "author": "themagician",
+      "date": "2017-03-08",
+      "year": 2017,
+      "text": "It's not simple, nor does \"no substitutions\" solve the problem. The Amazon Fresh model is far superior. If the item is out of stock, it shows out of stock. People will put up with Instacart until there is better solution—any really—because Instacart's solution is terrible.",
+      "storyTitle": "Instacart Closes Latest Funding Round at $3.4B Valuation",
+      "hnUrl": "https://news.ycombinator.com/item?id=13824659"
+    },
+    {
+      "id": 13900829,
+      "project": "Terraform",
+      "author": "codecurve",
+      "date": "2017-03-18",
+      "year": 2017,
+      "text": "We had a tough time with Terraform on AWS. The syntax is undeniably better than Cloudformation and having the concept of modularity built in is a big win. However, when things went wrong we ended up with cryptic error messages and often when `terraform up` failed, then `terraform destroy` would fail too, leaving us using AWS console to jump in and start clearing up the resources. Particularly painful because AWS has no awareness that your stack came from a Terraform config, so you have to navigate through the subresource menus destroying things one-by-one. We ended up switching over to Cloudformation. The extra verbosity does suck, but the tooling for running/updating stacks feels far safer. We can review the changeset when we update the stack, view a realtime event log as resources are created, deleted or updated, and best of all we can always tear the stack down from a single point.",
+      "storyTitle": "Terraform 0.9",
+      "hnUrl": "https://news.ycombinator.com/item?id=13900829"
+    },
+    {
+      "id": 14355315,
+      "project": "Slack",
+      "author": "hobarrera",
+      "date": "2017-05-17",
+      "year": 2017,
+      "text": "The worst part is this even affects non-linux users. My team is about 80% macOS and 20% linux. We can't have meeting without 20% of the team, so Slack is useless. You need to support everyone, or it all becomes pointless.",
+      "storyTitle": "Screen sharing comes to Slack video calls",
+      "hnUrl": "https://news.ycombinator.com/item?id=14355315"
+    },
+    {
+      "id": 14540359,
+      "project": "Coinbase",
+      "author": "k-mcgrady",
+      "date": "2017-06-12",
+      "year": 2017,
+      "text": "Just looking at BTC/LTC/ETH on Coinbase it seems like all have experienced a significant drop in price. This often seems to coincide with terrible Coinbase performance. Does downtime cause the drop in price/drop in price spike traffic and cause downtime/or are they unrelated?",
+      "storyTitle": "Coinbase is down",
+      "hnUrl": "https://news.ycombinator.com/item?id=14540359"
+    },
+    {
+      "id": 14542794,
+      "project": "TypeScript",
+      "author": "naiveattack",
+      "date": "2017-06-13",
+      "year": 2017,
+      "text": "Here are some more technically inclined comments (on why typescript is terrible compared to flow :) https://news.ycombinator.com/item?id=14472810",
+      "storyTitle": "TypeScript 2.4 RC",
+      "hnUrl": "https://news.ycombinator.com/item?id=14542794"
+    },
+    {
+      "id": 14831474,
+      "project": "GitLab",
+      "author": "y4mi",
+      "date": "2017-07-23",
+      "year": 2017,
+      "text": "really? i've heard that selfhosted gitlab tends to have terrible performance, even on pretty strong VMs. you're actually the first person that wrote positively about gitlabs performance i've come across. I don't have any experience on the matter though. my previous job used bare SSH-Repos and my current one uses Stash/Bitbucket.",
+      "storyTitle": "GitLab 9.4 Released with Related Issues and Web Application Monitoring",
+      "hnUrl": "https://news.ycombinator.com/item?id=14831474"
+    },
+    {
+      "id": 14840373,
+      "project": "GraphQL",
+      "author": "t_fatus",
+      "date": "2017-07-24",
+      "year": 2017,
+      "text": "or you can pass the fields you want in your request, and then realizing it would be simplier to fetch all your data in only one endpoint to avoid multiple roundtrips, create a giant request-parsing-data-fetching logic to respond with some kind of nested data, yeah GraphQL is useless because we can build a new one from scratch for each of our projects ;)",
+      "storyTitle": "REST in Peace. Long Live GraphQL",
+      "hnUrl": "https://news.ycombinator.com/item?id=14840373"
+    },
+    {
+      "id": 14965570,
+      "project": "Firebase",
+      "author": "superfrank",
+      "date": "2017-08-09",
+      "year": 2017,
+      "text": "I have had so many issues with Firebase, but the one that really pisses me off the most is that they used to advertise things like \"scale worldwide to millions of users\" and \"Unlimited Connections\" but then cap you at 100k concurrent users (10k initially and will gradually bump you up to 100k). When we got in contact with them about this they were nice enough to explain that we could create another database and shard our data manually. Fuck you Firebase, what a load of bull shit. Implying your database can scale infinitely because we can manually shard our data is like calling McDonalds an all you can eat restaurant because I can keep buying more chicken nuggets. I've yet to meet anyone who has used Firebase on a large scale project and been happy with it. Firebase is a toy at best, IMO. I honestly feel a bit bad for the development team at Firebase, they actually built something really cool that has a lot of potential. The problem I have is that someone took this cool project and basically lied to the public about its capabilities.",
+      "storyTitle": "Why I’m dumping Firebase for Web",
+      "hnUrl": "https://news.ycombinator.com/item?id=14965570"
+    },
+    {
+      "id": 15738267,
+      "project": "Instacart",
+      "author": "tbiwiti",
+      "date": "2017-11-20",
+      "year": 2017,
+      "text": "I've said this before, but I think a key component of contractors' rights going forward will be legislating their employers' ability to \"lock them in\" with loyalty programs and the like. In this case, a large part of the issue seems to be certain orders from people (and companies) that have found loopholes in the pricing (bulk orders of large, heavy goods). If contractors could decline these orders with no repercussions, they wouldn't be nearly as much of an issue. Instacart would fail to deliver these orders and quickly learn they need to change their pricing structure. The argument could be made that you can go too far in giving contractors the right to decline. I can imagine various forms of extortion occurring or problems being unable to blacklist problematic contractors, but it's a tradeoff that seems to be too far in the company's favour right now. Maybe disincentiving contract work in service-critical environments is a good thing, considering the complaints about rising part time and contracted work and not enough full time work.",
+      "storyTitle": "Some Instacart workers to strike over pay that can be as low as $1 per hour",
+      "hnUrl": "https://news.ycombinator.com/item?id=15738267"
+    },
+    {
+      "id": 15825594,
+      "project": "GraphQL",
+      "author": "hirundo",
+      "date": "2017-12-01",
+      "year": 2017,
+      "text": "I'm implementing filtering in a graphql api now, on a sql backend (a fixed constraint). We decided we just can't support arbitrary filtering. Full table scans don't scale, and an index for every column is costly. So we'll support it only on indexed columns and add indexes selectively. If graphql did require arbitrary filtering it would be useless to us at this point.",
+      "storyTitle": "Build Better GraphQL APIs: Thinking in Graphs",
+      "hnUrl": "https://news.ycombinator.com/item?id=15825594"
+    },
+    {
+      "id": 15869763,
+      "project": "Coinbase",
+      "author": "cbstory",
+      "date": "2017-12-07",
+      "year": 2017,
+      "text": "My experience with coinbase was terrible. I bought roughly 10k of eth this past summer. Eventuslly I was up 5000 I decided to sell 10k so I could let the rest freeride. When I went to sell coinbase told me they couldn't validate my identity and wouldn't let me sell. Which is ridiculous. They had no problem taking 10k from me, but not the other way around? At the very least they should have put some info somewhere telling me that before I bought any. Nothing I did worked. It just kept telling me it couldn't validate and to try again in 24hr. I contacted support and eventually got a boiler plate email. Eventually I opened a new account on another exchange, sent my eth there and sold it for btc which I sold for usd on localbtc. Ended up a 2000 dollar loss because this whole process took like a week or so during which eth kept dropping. My advice to anyone using cb would be to have a local wallet and working accounts on multiple exchanges. If I had done that I would have been okay. However I still think that if my identity was no sufficiently validated to sell, they should have told me before I went to sell.",
+      "storyTitle": "Coinbase: The Heart of the Bitcoin Frenzy",
+      "hnUrl": "https://news.ycombinator.com/item?id=15869763"
+    },
+    {
+      "id": 16332127,
+      "project": "Kubernetes",
+      "author": "sacheendra",
+      "date": "2018-02-08",
+      "year": 2018,
+      "text": "A consequence of the \"Kubernetes Effect\" is that while distributed systems are easy to build and use, a lot of developers lose sight of the fundamental problems which make distributed systems difficult. For example, the sidecar in a sidecar pattern might fail while the application is running and the system can get stuck in weird states. The developer still needs to understand fundamentally how the system works. Eschewing deeper knowledge just because it is easy to use is trap in this case. While the article compares Kubernetes to JVM, Kubernetes can fail in a lot more hard to debug ways than the JVM right now. I don't know if this semantic gap between distributed systems like Kubernetes and monolithic systems like JVM can ever be bridged.",
+      "storyTitle": "The Kubernetes Effect",
+      "hnUrl": "https://news.ycombinator.com/item?id=16332127"
+    },
+    {
+      "id": 17236856,
+      "project": "GitLab",
+      "author": "elango",
+      "date": "2018-06-05",
+      "year": 2018,
+      "text": "Gitlab is not ready for prime time, we tried setting up 2 weeks ago and were welcomed by several 500 errors. Our team was frustrated by the time we could on-board 4 members and ditched it.",
+      "storyTitle": "GitLab sees huge spike in project imports",
+      "hnUrl": "https://news.ycombinator.com/item?id=17236856"
+    },
+    {
+      "id": 17248851,
+      "project": "TypeScript",
+      "author": "noir_lord",
+      "date": "2018-06-06",
+      "year": 2018,
+      "text": "Looks like a jetbrains IDE, I'm a massive fan of intellij and it's my goto programming environment but it's type error messages with typescript are terrible compared to vscode (enough that if I can't understand what the hell it's saying I'll boot vscode). It's about the one thing I can really ding intellij for at the moment.",
+      "storyTitle": "TypeScript 2.9 is now available",
+      "hnUrl": "https://news.ycombinator.com/item?id=17248851"
+    },
+    {
+      "id": 17802540,
+      "project": "OpenAI",
+      "author": "shawn",
+      "date": "2018-08-20",
+      "year": 2018,
+      "text": "The thing is, OpenAI are terrible at the game. If they try to coach too much, they'll ruin their chances at beating the top Dota team. They have to let the bot discover its own winning strategies. For example: There are an infinite number of places to place a ward. One way to train the bot is to preselect all possible ward locations, reducing it to 30 or so common ones. Another way is to make an optimization algorithm where the bot focuses on trying to maximize the \"strategic vision\" (if it's possible to come up with a measure for \"strategic\") and then let the bot place wards wherever it wants. After hundreds of years of self-play, it should figure out the best place and times. As I write this out, I think you're probably right. There are too many aspects of the game for a purely-random algorithm to be effective... E.g. item builds. But I'm holding out hope that's just because they haven't figured out a good way to encode all dota items into a distance measure. AI has proven over and over that humans aren't so special. And humans know how to adapt to the game. That said, I wish OpenAI would be completely transparent as to what's emergent behavior and what's not. :) Oh, one last interesting thing: Icefrog is going to roll out a big patch after this TI, just like he always does. I wonder how much of the bots' knowledge will transfer over? Or if they'd be better off training from a clean slate?",
+      "storyTitle": "OpenAI Five: Goals and Progress",
+      "hnUrl": "https://news.ycombinator.com/item?id=17802540"
+    },
+    {
+      "id": 18700194,
+      "project": "Robinhood",
+      "author": "toomuchtodo",
+      "date": "2018-12-17",
+      "year": 2018,
+      "text": "I want Robinhood to fail. Most retail brokers pass through price improvements to their customers, and their fee structure is reasonable for the services they provide. I don't want a Facebook Of Financial Services (you don't pay directly, you pay through being the product). Robinhood is what Moviepass rebranded as a hip fintech startup that provides trading services would look like. They target the financially illiterate, and should be nuked from orbit. If a few dollars per trade are breaking you, you have no business actively trading (and should have at least $25k in working capital per FINRA pattern day trading guidelines [1]). Put your money in an index fund at Vanguard and stop gambling in what is a glorified loot box at Robinhood user scale. [1] http://www.finra.org/investors/day-trading-margin-requiremen...",
+      "storyTitle": "Robinhood Checking Moved Fast and Broke",
+      "hnUrl": "https://news.ycombinator.com/item?id=18700194"
+    },
+    {
+      "id": 19238612,
+      "project": "Discord",
+      "author": "tapland",
+      "date": "2019-02-24",
+      "year": 2019,
+      "text": "I'm still on IRC. It is much quicker and it is much easier to be connected and active in multiple servers/channels, whereas the overview in Discord is terrible unless you use third party clients, which can get you banned from the service. The voice service isn't very high quality and there are frequent server outages. I use Telegram, Facebook, whatever except Discord for instant messaging, and wish Discord wasn't the default for non-professional groups. People my age (upper 20s) praising it are always those who used Skype for gaming and never touched Teamspeak/Ventrilo/Mumble.",
+      "storyTitle": "How Discord Scaled Elixir to 5M Concurrent Users (2017)",
+      "hnUrl": "https://news.ycombinator.com/item?id=19238612"
+    },
+    {
+      "id": 20407645,
+      "project": "Zoom",
+      "author": "ultrarunner",
+      "date": "2019-07-10",
+      "year": 2019,
+      "text": "After that PR spin in response to threat disclosure in the original article, I am very skeptical of Zoom's PR machine. > Zoom spokesperson Priscilla McCarthy told TechCrunch: “We’re happy to have worked with Apple on testing this update. We expect the web server issue to be resolved today. We appreciate our users’ patience as we continue to work through addressing their concerns.” Yeah, I bet.",
+      "storyTitle": "Apple has pushed a silent Mac update to remove hidden Zoom web server",
+      "hnUrl": "https://news.ycombinator.com/item?id=20407645"
+    },
+    {
+      "id": 20783192,
+      "project": "Shopify",
+      "author": "sova",
+      "date": "2019-08-23",
+      "year": 2019,
+      "text": "Shopify is so expensive and for a small-time shop hosting and paying the shop fee eat up your first 2-10 sales easily, where is the free platform that only charges per sale?",
+      "storyTitle": "Now Bigger Than eBay, Shopify Sets Its Sights on Amazon",
+      "hnUrl": "https://news.ycombinator.com/item?id=20783192"
+    },
+    {
+      "id": 20823509,
+      "project": "Stripe",
+      "author": "cookiecaper",
+      "date": "2019-08-28",
+      "year": 2019,
+      "text": "The fact that Stripe ever used MongoDB is dubious enough, but that they've endured on it well past the fad's expiry is reason enough for me to avoid doing business with them in the future. Handling money is serious business and if one insists on using the unproven flavor-of-the-week to do so, they'd better make sure it has at least the fundamental requirements to accomplish its task, e.g., transactions/MVCC. Stripe apparently failed to do so, and has chosen to propagate that failure for many years. One can make excuses for the spunky startup with a handful of employees needing to save time by using what they know or whatever, but Stripe is well past that point, and serious people should've taken over by now. I'd expect \"replace Mongo with a real database\" to be near the top of the todo list for any serious people.",
+      "storyTitle": "Lessons from Stripe",
+      "hnUrl": "https://news.ycombinator.com/item?id=20823509"
+    },
+    {
+      "id": 21729936,
+      "project": "Duolingo",
+      "author": "simias",
+      "date": "2019-12-07",
+      "year": 2019,
+      "text": "Duolingo is useless on its own, especially for harder language pairs. The only reason it's popular is because of the gamification, I find that apps like Memrise or LingQ are massively more useful to actually improve your language skills. Those apps focus on specific skills (vocabulary learning through spaced repetition for Memrise, learning comprehension for LingQ) which means that you have to use other methods to work on other aspects like grammar and conversational skills but at least they attempt to do one thing and they do it mostly well. The only added value I have from using Duolingo is getting some amount of practice actually constructing my target language but even then it's hugely limited because: - You never have any context which makes the experience always completely artificial and makes it harder to get a feel or the language. IMO Duolingo would be 10x better if lessons followed (even very loosely) an internal story instead of just having random, often contrived sentences one after the other. Something as simple as recurring characters, simple common situations etc... It would make it a lot easier to have a mental model of the world you're talking about and it doesn't seem like it would complicate things heavily. - The bulk of the practice involves translation exercises which is limiting and can even be counterproductive. A very important step towards fluency in any language is to stop translating and start constructing the language directly. I'm not a native English speaker but as I write these words I'm not translating a French internal monologue, I know what I want to say and I say it in English directly. It's faster and more natural that way. - The killing blow is that those translation exercises are corrected by, as far as I can tell, some sort of complicated regexp engine. It's very common for a correct-but-unexpected solution to be rejected and when it gets reported it can lingers for years without being fixed. As such you start not to trust the correction given when you don't understand precisely why your sentence was wrong. That last point is really frustrating. I'm a native French speaker and I tried finishing the \"French for English speakers\" tree using shortcuts to get an idea of the quality and I simply can't reliably unlock the checkpoints on my first try because some of my perfectly fine and idiomatic French sentences end up not fitting the regexp and be marked wrong.",
+      "storyTitle": "Duolingo becomes first VC-funded $1B Pittsburgh tech startup",
+      "hnUrl": "https://news.ycombinator.com/item?id=21729936"
+    },
+    {
+      "id": 21839244,
+      "project": "Shopify",
+      "author": "uyuioi",
+      "date": "2019-12-19",
+      "year": 2019,
+      "text": "The Shopify developer experience is terrible. No fluffy blog can change that fact. Shopify says the main product is the store owner. But the developers pick up all of the slack of Shopify. Recurring payments. App. Store backups. App. Theme backups. App. Order editing. Came late 2019. Checkout. So locked down. Where’s the API?! Slate tooling. Abandoned. Starter themes. Abandoned. Storefront SDK. Terrible documentation. More than 1 variant image? App. Metafields. App. Wholesale. App. Mailchimp. Removed. People talk about google abandoning products. Shopify abandons nearly all developer tooling and is so locked down that it’s a constant “app for that” for the basics. The interesting thing is theres been more than a few store owners I know that use Shopify. They’ve asked how to move off of Shopify. I guess fulfilment is more important though. Right?!",
+      "storyTitle": "How Shopify Manages API Versioning and Breaking Changes",
+      "hnUrl": "https://news.ycombinator.com/item?id=21839244"
+    },
+    {
+      "id": 22039332,
+      "project": "Plaid",
+      "author": "nikolay",
+      "date": "2020-01-13",
+      "year": 2020,
+      "text": "Plaid is terrible! Both Wells Fargo and Bank of America support API integration, but Plaid chooses to screen-scrape and does not work if you have 2FA enabled. Also, you can't even manually enter your bank information. In other words, even if you pay dearly to Plaid, you may block many users who use some of the top banks in the States! There is a bunch of services I cannot use because they rely solely on Plaid, and I'm not willing to disable 2FA! Maybe being Visa, it will make the whole service more meaningful if Visa pushes banks to integrate, because it's 2020, and giving your password for your bank to a third party, when there are APIs and OAuth/OpenID protocols available for banks.",
+      "storyTitle": "Visa Buys Plaid",
+      "hnUrl": "https://news.ycombinator.com/item?id=22039332"
+    },
+    {
+      "id": 22371975,
+      "project": "Stripe",
+      "author": "derrick_jensen",
+      "date": "2020-02-20",
+      "year": 2020,
+      "text": "Honestly, I don't find their support helpful with fixing any of my issues, and asking the same question multiple times gives completely different responses. I managed to completely break the Stripe Test API (nothing works, always \"in the process of deleting\"), and I've been in support limbo for at least a week now. Haven't looked into the alternatives, but I hope I can move most commerce over to Bitcoin since I can run that fairly cheap internally to the company (and bypass PCI compliance, etc) EDIT: Maybe I was being overly critical in the first half, but in general implementation has been a bumpy experience. Most transactions on this platform are microtransactions, so it isn't that Stripe is expensive as much as I'm using it in an unconventional way, and not having a $0.30 static fee drastically changes my profit margins",
+      "storyTitle": "Stripe refunds: fees from the original charge are not returned",
+      "hnUrl": "https://news.ycombinator.com/item?id=22371975"
+    },
+    {
+      "id": 22379373,
+      "project": "PostHog",
+      "author": "malisper",
+      "date": "2020-02-20",
+      "year": 2020,
+      "text": "I'm curious as to how you plan to scale PostHog to larger users. As the person who scaled Heap, here is my honest opinion of this. I think there is going to be a huge challenge ahead in scaling query performance. This was perpetually a challenge at Heap and was for a long time the main limitation on Heap's growth. The challenge was tough enough for Heap and PostHog is going to be at a huge disadvantage due to the lack of multi-tenancy. When you use Heap, your data is stored across Heap's entire cluster of machines. When you run a query, that query is ran simultaneously against every single machine in Heap's cluster. Even though your data may be taking up something like .1% of the total disk space, when you run a query, 100% of the disk throughput of Heap's cluster will go to processing your query. It's not an overstatement to say this alone results in a >50x improvement to query performance. I honestly think Heap wouldn't be possible without multi-tenancy. It's hard enough as is to get queries that process multiple terabytes of data to return in seconds when you have a fleet of dozens of i3s available. I'm not sure how you would do that with a fleet a tiny fraction of that size. If you're curious about Heap's infrastructure, Heap's CTO, Dan Robinson, has given a number of talks on how it works[0][1]. That's not to say that PostHog won't work for anyone. I previously tried (and failed) to start a company based on optimizing people's Postgres instances. One of the big takeaways I had was that no matter how you use it, Postgres will work completely fine as long as you have <5GB of data. I think if you have a modest amount of data, something like PostHog would work perfectly fine for you. Since the Postgres optimization business didn't work out, I wound up pivoting to freshpaint.io which eliminates the need to setup event tracking for your analytics and marketing tools by automatically instrumenting your entire site. Since I started working on it, things have been going a lot better. [0] https://www.youtube.com/watch?v=NVl9_6J1G60 [1] https://www.youtube.com/watch?v=iJLq3GV1Dyk",
+      "storyTitle": "Launch HN: PostHog (YC W20) – open-source product analytics",
+      "hnUrl": "https://news.ycombinator.com/item?id=22379373"
+    },
+    {
+      "id": 22671628,
+      "project": "Zoom",
+      "author": "eagsalazar2",
+      "date": "2020-03-24",
+      "year": 2020,
+      "text": "Is this really as good as zoom? Zoom's UX is terrible, the only reason it has taken over is because they are better at preserving audio quality and doing echo cancellation than previous contenders.",
+      "storyTitle": "Jitsi Meet: An open source alternative to Zoom",
+      "hnUrl": "https://news.ycombinator.com/item?id=22671628"
+    },
+    {
+      "id": 23176106,
+      "project": "Deno",
+      "author": "ranguna",
+      "date": "2020-05-14",
+      "year": 2020,
+      "text": "I'm probably just one more person among the hundreds who are missing something here but: if the big thing about deno is that you can directly fetch dependencies from source with, for example, a GitHub repo URL, instead of going to a package registry like npm, where the package is decoupled from the source, why don't you simply do this already by changing the package.json and swapping the npm identifier with a URL to the repo? You can already do decentralisation with npm by simply not using`npm i some-package --save` and instead, modify the package.json yourself. Now the problem with deno is that if I import 5 packages (locked to a specific version) across 50 files and I want to update them to a new version, am I really gonna need to go into every single file and change the URLs?? That's just insane, I get the whole idea of decentralisation but why can't we concentrate all packages into a single file?? Sire this is all good for distribution because you won't have to run `npm i` every time you want to run your program, but more often than not, I'm the one that's going to use my program and I don't mind running `npm i` beforehand and feel safe that I have all my packages downloaded and ready to go, instead of worrying that my program will fail at run-time because the URL for one of my packages is down..",
+      "storyTitle": "Deno 1.0",
+      "hnUrl": "https://news.ycombinator.com/item?id=23176106"
+    },
+    {
+      "id": 23218535,
+      "project": "DoorDash",
+      "author": "adrr",
+      "date": "2020-05-18",
+      "year": 2020,
+      "text": "I have Dashpass free from my credit card. Its not the same as ordering from directly from restaurant as Doordash marks up the prices 10% to 25%. I always thought Doordash was a terrible deal without it, you're paying marked up prices, delivery fee and a tip. Doordash is winning because they have the widest selection of restaurants since they are using their own drivers compared to Grubhub. Not sure why Postmates and UberEats failed to capture more market share since they offer the same service.",
+      "storyTitle": "Doordash and Pizza Arbitrage",
+      "hnUrl": "https://news.ycombinator.com/item?id=23218535"
+    },
+    {
+      "id": 23585820,
+      "project": "Figma",
+      "author": "mostlyjason",
+      "date": "2020-06-20",
+      "year": 2020,
+      "text": "Our designers use Figma but the licenses are so expensive that people on the product team can’t even make small changes or illustrate concepts. Additionally the UX has tons of hidden features making it hard for non experts to discover how to do simple things like export mockups. As a result the designers have a backlog of small busy work changes instead of focusing on the key design questions. No one else has licenses to make updates or knows how to use the tool. The product team has started using Whimsical which is easier to use and is more reasonably priced for people who only use it occasionally or need to quickly illustrate low fidelity concepts. Now we have two design tools to essentially get around UX and pricing problems.",
+      "storyTitle": "Why Figma Wins",
+      "hnUrl": "https://news.ycombinator.com/item?id=23585820"
+    },
+    {
+      "id": 24331093,
+      "project": "Pinterest",
+      "author": "diffeomorphism",
+      "date": "2020-08-31",
+      "year": 2020,
+      "text": "They are comparing getting rid of spam to getting rid of useless pinterest results in their search. That is a pretty obvious comparison. So, no. They are comparing \"getting rid of\" and \"getting rid of\".",
+      "storyTitle": "Pinterest pays $89.5M to terminate San Francisco office lease",
+      "hnUrl": "https://news.ycombinator.com/item?id=24331093"
+    },
+    {
+      "id": 24650184,
+      "project": "Zapier",
+      "author": "bitxbit",
+      "date": "2020-10-01",
+      "year": 2020,
+      "text": "Am I the only who thinks Zapier and IFTTT are useless? The only one that comes close to delivering on utility is autocode.",
+      "storyTitle": "Actionsflow – IFTTT/Zapier free alternative based on GitHub Actions",
+      "hnUrl": "https://news.ycombinator.com/item?id=24650184"
+    },
+    {
+      "id": 25370849,
+      "project": "DoorDash",
+      "author": "6gvONxR4sf7o",
+      "date": "2020-12-10",
+      "year": 2020,
+      "text": "Has anyone had a recent good experience with doordash? I recently ordered from doordash where the estimate was 60 minutes from order to delivery. I wrote in to CX at about the 90 minute mark and they told me that maybe the restaurant wasn’t finished and that they had a person on the way to pick it up (counter to what the app said). Around the two hour mark, I wrote in again and they said the same. I asked if they had a specific person currently on the way and was told yes. We eventually called the restaurant who confirmed that they had had our food ready for hours, at which point doordash said “oh actually, we don’t know when we’ll be able to get it to you, we’ll give you doordash credits in refund.” When we drove ourselves to the restaurant to pick it up, hours after ordering, they said doordash had kept submitting orders but hadn’t actually sent any doordash drivers in a week or two. Everyone seems to have a doordash is terrible story. I can’t believe the valuation I’m seeing.",
+      "storyTitle": "DoorDash from Application to IPO",
+      "hnUrl": "https://news.ycombinator.com/item?id=25370849"
+    },
+    {
+      "id": 25755324,
+      "project": "Plaid",
+      "author": "seanieb",
+      "date": "2021-01-12",
+      "year": 2021,
+      "text": "I’ve some friends that works there, so I’m hesitant to say this, because I’m sorry for them, but Plaid is a terrible company. Their main product scrapes financial data from unsuspecting users that simply think they’re making a bank transfer and not signing away the privacy and security of their banking, 401k and trading information. https://twitter.com/seanieb/status/1298871471645761537?s=20",
+      "storyTitle": "Visa and Plaid Abandon Merger After Antitrust Division’s Suit to Block",
+      "hnUrl": "https://news.ycombinator.com/item?id=25755324"
+    },
+    {
+      "id": 25756948,
+      "project": "Plaid",
+      "author": "gravyboat",
+      "date": "2021-01-13",
+      "year": 2021,
+      "text": "Why are you sorry for them? They are making the choice to work at Plaid when they know Plaid is a terrible legal phishing company.",
+      "storyTitle": "Visa and Plaid Abandon Merger After Antitrust Division’s Suit to Block",
+      "hnUrl": "https://news.ycombinator.com/item?id=25756948"
+    },
+    {
+      "id": 26260529,
+      "project": "Shopify",
+      "author": "blueblisters",
+      "date": "2021-02-25",
+      "year": 2021,
+      "text": "Shopify is really terrible when it comes to partner support. The documentation is terrible and if you want to use their API, be prepared to bang your hand against the wall for their design choices. Partners are not Shopify's actual customers of course, but Shopify wants partners to make up for all the shortcomings of the platform without making appropriate tools and support available. In your particular case, if I understand correctly, Shopify wants you to bill customers for App store purchases through their platform. I don't think that's wrong - most marketplaces expect a cut of the revenue you make off their platform.",
+      "storyTitle": "Shopify says remove Stripe billing or get booted from their app store",
+      "hnUrl": "https://news.ycombinator.com/item?id=26260529"
+    },
+    {
+      "id": 26260758,
+      "project": "Shopify",
+      "author": "beshrkayali",
+      "date": "2021-02-25",
+      "year": 2021,
+      "text": "Shopify is a terrible experience overall, and I wouldn't recommend it for anyone looking to start a quick ecom business online, especially if you don't have technical experience _or_ you don't plan exactly what you'll do if you grow over it. I had to work with some clients that wanted to move away from Shopify and I was surprised at how certain types of paccounts are required to access certain parts of the API for their store. For example, you could retrieve orders but not promocodes, or not users, I can't remember exactly now, but they either had to pay more or put up with CSV parsing with limited amount of information and details. These services would probably not have had the \"success\" they're seeing if it wasn't for these dark patterns they implement to ex(tract|tort) money from their most likely non-technical clientele. With that being said, I don't see a problem in requiring their users to use a specific PSP that makes more business sense for them. But yes, like other have pointed out, it's way up there on the hypocrisy chart to do this while complaining about Apple. Apple's 30% cut is not unfair, neither is theirs.",
+      "storyTitle": "Shopify says remove Stripe billing or get booted from their app store",
+      "hnUrl": "https://news.ycombinator.com/item?id=26260758"
+    },
+    {
+      "id": 26551894,
+      "project": "Discord",
+      "author": "kortilla",
+      "date": "2021-03-23",
+      "year": 2021,
+      "text": "Discord hasn’t solved it anymore than slack, iMessage, teams, etc. The experience is more polished but it doesn’t do anything fundamentally special. If discord shutdown tomorrow my friends would be annoyed and would just move to some other similar group chat + audio. The value is entirely in the user base. I wouldn’t be on it if nobody was there. > Really? How did you come to this conclusion? Because that’s how every social network works. Here’s a thought exercise. Do you think Microsoft would offer $10B to buy Discord if they weren’t allowed to transfer over any of the existing accounts? If it’s $10B worth of just software engineering, then that’s an easy “yes”. The realistic answer though is “no” because Discord is useless without the user-base.",
+      "storyTitle": "Microsoft in talks to buy Discord for more than $10B",
+      "hnUrl": "https://news.ycombinator.com/item?id=26551894"
+    },
+    {
+      "id": 26815003,
+      "project": "Terraform",
+      "author": "rantwasp",
+      "date": "2021-04-15",
+      "year": 2021,
+      "text": "I do not like terraform and I believe it's a terrible tool. Here is the error you get when it fails: Terraform does not automatically rollback in the face of errors. Instead, your Terraform state file has been partially updated with any resources that successfully completed. Please address the error above and apply again to incrementally change your infrastructure. If that error does not give you pause, I don't know what will. It's basically YOLO-ing it and in case it does not work you're on your own. It's also leaving you in whatever state and now you need to figure out what it managed to do, what didn't work and figure out how to 1) make it work 2) make terraform understand that it worked. Usually this happens at the worst time when you are deploying to production. Do we want to talk about when plan \"works\" but it craps out on \"apply\"? Or about when it just loses tracks of resources. HCL? A disaster. Why would you need to invent your own language? Why oh why? Hashicorp also knows better. Remember Vagrant? Vagrant got it right with the DSL + you could always drop down to Ruby if you did something not covered by the DSL. My advice to you: use whatever the cloud you are using has built it (cloudformation, deployment manager, etc).",
+      "storyTitle": "Terraform 0.15 General Availability",
+      "hnUrl": "https://news.ycombinator.com/item?id=26815003"
+    },
+    {
+      "id": 26816693,
+      "project": "Terraform",
+      "author": "decebalus1",
+      "date": "2021-04-15",
+      "year": 2021,
+      "text": "I have been using terraform professionally at my current workplace for a while now and I would not recommend it to anyone when building and maintaining non-trivial infrastructure. - state management is a sad joke. Which would be fine if it wouldn't end up being an expensive joke sometimes. And by sometimes I mean right when you need to change production. Try destroying your stack with an AWS KMS key. Then create it again. Try killing apply and then try re-applying it. I have witnessed hours of developer time going down the drain to figure out what terraform was able to do, import resources, convince terraform that resources are added, write scripts to delete stuff.. A complete nightmare. Oh yeah, but just run apply twice, that usually fixes it. There is no such thing as a rollback in the world of terraform. We only roll forward! - bUt ItS cLouD AgNoSTic. No, it's not. You're writing separate stacks with their separate own custom resources and their separate requirements and separate policies. Just use cloudformation, gdm or whatever your cloud uses and automate these using a script if you're doing crosscloud crap. - but I want to avoid vendor lock-in. See above, odds are that you're already locked-in but still in denial. - HCL. I get it. Declarative, nice and clean. HAHAHA, who am I kidding. It sucks, it's stupid and pointless. Awful to write, awful to read, inconsistent, no proper tooling or editor support. Good luck maintaining dependencies or comprehending a complex stack. Why didn't they just build a DSL over a language people already know? Good luck 'refactoring' your resource definitions. Oh, and you also want to test it somehow without affecting a remote environment? Again, good luck, sucker. Because 'the plan' is a lie. And error messages seem to be written by someone waging war against their customers. In conclusion, I do not recommend terraform. In my opinion it is an overhyped piece of technology on which I would not bet my company/money on.",
+      "storyTitle": "Terraform 0.15 General Availability",
+      "hnUrl": "https://news.ycombinator.com/item?id=26816693"
+    },
+    {
+      "id": 26973567,
+      "project": "Vite",
+      "author": "eliseumds",
+      "date": "2021-04-28",
+      "year": 2021,
+      "text": "I literally just spent days trying out Vite and comparing it to Webpack 5, and I can comfortably say that they are in two very distinct leagues. It isn't fair to compare Vite to a CRA build with Webpack. You can greatly improve Webpack's performance by: * Making sure `mode` is set to \"development\" (don't specify it all if in doubt) * Ditching babel-loader and using esbuild-loader instead * Adjusting build targets and making sure polyfills are not added in development * Making sure you don't import the entirety of libraries like Lodash and MomentJS (prefer date-fns) * [FUTURE] We'll soon be able to tell Webpack to output ES modules just like Vite [1] Vite still has many problems: * It just isn't suitable for proper server-side rendering, we'd need access to chunk names at build time * It has a weird mix of own and Rollup config settings that seems somewhat unpredictable * Many open issues regarding module imports, for ex, when a CJS module imports an ES one [2] Our current bottleneck with Webpack is actually sass-loader, taking at least 70% of the time during a fresh build, and we'd have the same problem with Vite. Something else that is worth pointing out is the ecosystem: Webpack's community has built tons of plugins for basically any use case you can imagine, and version 5 supports module federation, persistent caching, externals (very handy when doing SSR), customizable filename generators, performance hints, etc etc. Totally different game. Try to keep your build config simple, avoid too many loaders, plugins, and you should be fine 99% of the time. If you hit a wall, install speed-measure-webpack-plugin to get some help. [1] https://github.com/webpack/webpack/issues/2933 [2] https://github.com/vitejs/vite/issues?q=is%3Aissue+is%3Aopen...",
+      "storyTitle": "Why we switched from Webpack to Vite",
+      "hnUrl": "https://news.ycombinator.com/item?id=26973567"
+    },
+    {
+      "id": 27674448,
+      "project": "Duolingo",
+      "author": "globular-toast",
+      "date": "2021-06-29",
+      "year": 2021,
+      "text": "The only thing something like Duolingo could be good at is learning vocabulary. But I found it pretty bad at that. I had much more success with Memrise. However, this was many years ago and last I checked Memrise had regressed significantly, at least for me. Duolingo is a terrible way of learning languages overall. Almost as bad as Rosetta Stone. But, like Rosetta Stone and other things like gym memberships, it doesn't have to be effective to be profitable.",
+      "storyTitle": "Duolingo S-1 IPO",
+      "hnUrl": "https://news.ycombinator.com/item?id=27674448"
+    },
+    {
+      "id": 27809850,
+      "project": "GitHub Copilot",
+      "author": "_fat_santa",
+      "date": "2021-07-12",
+      "year": 2021,
+      "text": "I think the use case for Copilot is a bit misunderstood. The way I see it you have two types of code: 1. Smart Code: Code that you honestly have to think about while you're writing. You write this code slowly and carefully, to make sure that it does what you need it to 2. Dumb Code: This is trivial code, like adding a button to a screen. This is code you really don't have to think about, because you already know exactly how to implement it. At this point your biggest obstacle is how fast can your fingers type on a keyboard. For me Github Copilot is useless for \"Smart Code\" but a godsend when writing \"Dumb Code\". I want to focus more on writing and figuring out the \"Smart Code\", if I need to throw a form together in HTML or make a trivial helper function, I will gladly let AI take over and do that work for me.",
+      "storyTitle": "Risk Assessment of GitHub Copilot",
+      "hnUrl": "https://news.ycombinator.com/item?id=27809850"
+    },
+    {
+      "id": 28590525,
+      "project": "Figma",
+      "author": "philliphaydon",
+      "date": "2021-09-20",
+      "year": 2021,
+      "text": "AHHH I can't stags Figma, it's UX is terrible, it's so difficult to understand what's going on. I feel like I need a PHD to use it.",
+      "storyTitle": "Why Figma Wins (2020)",
+      "hnUrl": "https://news.ycombinator.com/item?id=28590525"
+    },
+    {
+      "id": 29129647,
+      "project": "Discord",
+      "author": "Philip-J-Fry",
+      "date": "2021-11-06",
+      "year": 2021,
+      "text": "I don't know why Discord has replaced a good forum in a lot of communities. A subreddit is free too and better for discussion. Most people say \"Join my Discord to learn more about X\" but really that information is just pinned at the top of an announcements channel. Everything else about that Discord is useless for most people. It just serves as a way for the owner to @everyone and push a notification out. My Discord server is just a place for me and a few friends to post random stuff and voice chat. That's what it's good for. Plus, the more Discords you join, the more you get spammed by hacked accounts running down the user list. That's another reason why I won't join a Discord for every single thing I'm interested in. I've never gotten spammed from subscribing to a subreddit or joining a forum.",
+      "storyTitle": "Against Discord Channels",
+      "hnUrl": "https://news.ycombinator.com/item?id=29129647"
+    },
+    {
+      "id": 29130339,
+      "project": "Discord",
+      "author": "foven",
+      "date": "2021-11-06",
+      "year": 2021,
+      "text": "I hope discord pays you to write fluff pieces like this. In practice, threads are effectively the same as channels with the benefit that if people stop talking after x minutes it self-deletes/archives/disappears, but ultimately works the same where discussion gets channeled into smaller and smaller circles - policing of \"this should go here\", \"there's a thread for that\", \"just make a thread\" etc. In fact it is even worse than channels because by default threads are not visible. They get hidden behind a button to even view them, and they naturally do not alert you to when a new thread is being created. It adds another layer of inaccessibility to channels that filters down the amount of people you will actually be engaging with at any one time. I agree discord is great for being easy to use and access, but ultimately it falls apart above say a couple hundred members. At 330k members really you are better off just opening a forum, it's an insane amount of people that really I think you do struggle to develop any sense of community and I'm almost positive that there is very little meaningful interaction between your epic content creator and his fans in this discord server. And let's be honest, discord moderators are a joke. The majority of the time people who choose or seek to be moderators, particularly in the manner you mention through a moderator \"exam\", are individuals that are grasping for a small sense of power to lord over people. Moderation isn't rocket science. I'm rather skeptical that it hasn't polluted your view given the way you vaguely name-drop moderating for a large community, a job that is completely thankless and likely unpaid except for in the clout you might gain by name dropping.",
+      "storyTitle": "Against Discord Channels",
+      "hnUrl": "https://news.ycombinator.com/item?id=29130339"
+    },
+    {
+      "id": 29154747,
+      "project": "Discord",
+      "author": "pavel_lishin",
+      "date": "2021-11-08",
+      "year": 2021,
+      "text": "I agree with the fact that Slack/Discord are terrible for keeping track of things long-term, but I will say that once you've set Discord/Slack up and running, operating it is typically pretty smooth - you've already likely got Slack and Discord running, and you can check it every so often. Granted, things can completely explode, and moderation is still a requirement, but that's true of forums as well. (Although due to their async nature, things boil over much more slowly, and it's typically easier to just put the entire forum or a user into a timeout.)",
+      "storyTitle": "Use forums rather than Slack/Discord to support developer community",
+      "hnUrl": "https://news.ycombinator.com/item?id=29154747"
+    },
+    {
+      "id": 29928917,
+      "project": "Figma",
+      "author": "mrtesthah",
+      "date": "2022-01-14",
+      "year": 2022,
+      "text": "Figma is terrible for users. If they change their business model or get acqui-hired, I lose access to the app and all my documents. With a real app on my computer, I can continue to use my documents indefinitely. Even if the app developer goes out of business and it can no longer run in the latest version of macOS, I can set up a VM or keep an old computer or boot disk around to run it. That will never be the case for apps running on someone else’s server. These base practicalities are why, no matter how good the user experience of Figma, I can never rely on it for anything important or long-term.",
+      "storyTitle": "Catching Native Apps",
+      "hnUrl": "https://news.ycombinator.com/item?id=29928917"
+    },
+    {
+      "id": 30711643,
+      "project": "Deno",
+      "author": "tentacleuno",
+      "date": "2022-03-17",
+      "year": 2022,
+      "text": "Probably both. You can't use NPM (though you can use one of those online CDN's like unpkg) and the packages you can use probably don't work, as Deno doesn't support Node's API at all. It doesn't support any Node-specific packages like 'fs' or 'crypto' either. Unless you're writing a totally new application and don't need anything (even retrospectively) from NPM, Deno probably won't work for you. As much as I like Deno as a concept, I can't really use it. Making a totally new JavaScript runtime with new API's and no compatibility with the current largest runtime is a very ambitious goal, and I hope they succeed with it nevertheless.",
+      "storyTitle": "Deno 1.20",
+      "hnUrl": "https://news.ycombinator.com/item?id=30711643"
+    },
+    {
+      "id": 31160338,
+      "project": "Tailwind CSS",
+      "author": "erokar",
+      "date": "2022-04-25",
+      "year": 2022,
+      "text": "Not for me. Bootstrap is very mature, has sane UX, is adaptable, has a good balance between general styles and utility classes. I find that Tailwind clutters your HTML and I fail to see the benefit over writing pure CSS in isolated components in a framework like e.g. Svelte. The reason I would use a CSS framework in the first place is to avoid having to write everything from scratch myself. All (the free parts of) Tailwind affords is an indirect way of writing styles using classes. In that case you might as well bite the bullet and learn CSS properly.",
+      "storyTitle": "Free Open Source Tailwind CSS Components",
+      "hnUrl": "https://news.ycombinator.com/item?id=31160338"
+    },
+    {
+      "id": 32536995,
+      "project": "Segment",
+      "author": "tarun_anand",
+      "date": "2022-08-21",
+      "year": 2022,
+      "text": "Product analytics should start pretty much straight after the product launch/go live. Segment is an expensive proposition and depends on whether you have a warehouse setup or not. Disclaimer: We run a product analytics/marketing automation company https://www.appice.io",
+      "storyTitle": "Ask HN: When did your startup start using Segment/Amplitude?",
+      "hnUrl": "https://news.ycombinator.com/item?id=32536995"
+    },
+    {
+      "id": 32555275,
+      "project": "Snowflake",
+      "author": "manassolanki",
+      "date": "2022-08-22",
+      "year": 2022,
+      "text": "Snowflake is expensive if not monitored properly, on top of that they provide minimal observability. There are some good features like auto suspend and auto resume for cost savings but still there is scope of optimisations. For ex, they will charge you for minimum 1 minutes even if your query is running only for 2 seconds.",
+      "storyTitle": "Why is Snowflake so expensive",
+      "hnUrl": "https://news.ycombinator.com/item?id=32555275"
+    },
+    {
+      "id": 32555278,
+      "project": "Snowflake",
+      "author": "wsostt",
+      "date": "2022-08-22",
+      "year": 2022,
+      "text": "Snowflake is so expensive that Capital One has developed a toolkit for managing your instance. https://www.capitalone.com/software/solutions/",
+      "storyTitle": "Why is Snowflake so expensive",
+      "hnUrl": "https://news.ycombinator.com/item?id=32555278"
+    },
+    {
+      "id": 32556072,
+      "project": "Snowflake",
+      "author": "colinmhayes",
+      "date": "2022-08-22",
+      "year": 2022,
+      "text": "Snowflake is slower and more expensive than competitors. I'd say its moat is mostly that its extremely easy to set up and start using without technical support. If you've just got a small team and no one wants to do data engineering snowflake makes that possible, or at least much easier. Most users are generally happy, and they've followed the cloud playbook of making it hard to switch off, so even when teams have scaled to the level where secondary indexes and data support staff makes sense the team is still happy with snowflake.",
+      "storyTitle": "Why is Snowflake so expensive",
+      "hnUrl": "https://news.ycombinator.com/item?id=32556072"
+    },
+    {
+      "id": 32587858,
+      "project": "Bun",
+      "author": "dirkg",
+      "date": "2022-08-25",
+      "year": 2022,
+      "text": "Jared has done phenomenal work and I really like his ethos of optimizing everything, but I remain skeptical about bun's stated goal of replacing node. Its clear now that their end goal is to make money off their hosted service, which will probably come with certain limitations.",
+      "storyTitle": "Oven (Bun)'s first employee will “grind” for nine months with poor WLB",
+      "hnUrl": "https://news.ycombinator.com/item?id=32587858"
+    },
+    {
+      "id": 32754652,
+      "project": "GitHub Copilot",
+      "author": "avg_dev",
+      "date": "2022-09-07",
+      "year": 2022,
+      "text": "I read the article and I have some skepticism. I think my skepticism is well-founded but it may well be the case that a machine will one day do my job. I don't believe that time is at hand, though. First off, I don't see a link to the \"HTTP server in JavaScript\" task. It's really hard for me to place much faith in their conclusions when it's not even clear what the problem definition was. Second, I believe that a lot of more senior developers and development managers who take secure development practices somewhat seriously will not be able or willing to use Copilot in any sort of proprietary setting. Here is a quote from the Copilot FAQ: > [...] The GitHub Copilot extension sends your comments and code to the GitHub Copilot service, and it relies on context, as described in Privacy below - i.e., file content both in the file you are editing, as well as neighboring or related files within a project. It may also collect the URLs of repositories or file paths to identify relevant context. The comments and code along with context are then used by OpenAI Codex to synthesize and suggest individual lines and whole functions. - from https://github.com/features/copilot/#faq - see \"How does GitHub Copilot work?\" I believe this makes it simply a nonstarter in a lot of environments. I am wondering if there are a number of places that have restrictions on sharing their code with a third-party but don't know or don't care and so end up using Copilot anyway. I believe that short-sighted thinking like this is more prevalent in shops that have low-quality code, and I believe that the higher-quality the code, the less likely someone is to use Copilot, simply for the \"I can't share my code, even if I use the most restrictive no-telemetry settings\" reason. Give me a self-hosted Copilot, and I may try it out in anger. Finally, I based some of my thinking on a recent Reddit /r/programming discussion of Copilot: https://old.reddit.com/r/programming/comments/wsnend/since_g... After reading those posts, and internalizing them with my own view of coding, I believe Copilot is not ready for my personal use. Again: licensing considerations aside (if you actually can feel comfortable putting them aside, see NoraCodes comment in this HN thread e.g.), it is simply a non-starter for anything proprietary in nature. I am also of the mind that any code that is of necessity very tedious to write is in dire need of real attention, most likely in the form of tests and quite possibly refactoring to reduce the boilerplate if at all possible. I believe in the value of linters and automated code analysis tools and in continuous integration that runs after every commit. Give me a self-hosted Copilot, and we'll have a real chance to see how it works out - until then it's not going to be a boon to programmers.",
+      "storyTitle": "Quantifying GitHub Copilot’s impact on developer productivity and happiness",
+      "hnUrl": "https://news.ycombinator.com/item?id=32754652"
+    },
+    {
+      "id": 32876551,
+      "project": "Figma",
+      "author": "chupchap",
+      "date": "2022-09-17",
+      "year": 2022,
+      "text": "Figma has amazing collaboration features but working on larger projects on figma is terrible. It gets very glitchy and doesn't match the responsiveness of XD in my limited experience.",
+      "storyTitle": "Figma vs. Adobe XD",
+      "hnUrl": "https://news.ycombinator.com/item?id=32876551"
+    },
+    {
+      "id": 33201292,
+      "project": "Bun",
+      "author": "panzerboiler",
+      "date": "2022-10-14",
+      "year": 2022,
+      "text": "If you want to see which one is faster (kind of pointless since both bun and deno/flash are not production ready) test your own application, and not an \"hello world\" or a specific workload that has been optimized to win a specific benchmark.",
+      "storyTitle": "Bun v0.2.0",
+      "hnUrl": "https://news.ycombinator.com/item?id=33201292"
+    },
+    {
+      "id": 33834411,
+      "project": "ChatGPT",
+      "author": "LeanderK",
+      "date": "2022-12-02",
+      "year": 2022,
+      "text": "I think a missing piece is that ChatGPT doesn't know when it's either confused or out of depth. It starts producing gibberish, which is very hard to separate from the quality answers. Especially if it would just straightforwardly say when it doesn't know the answer, that would be really helpful. It's easy for ChatGPT to fail the classic turing test because if this. I know that's not the goal here, but for it to pass it does not (or should not?) be able to answer everything but just say when it doesn't know the answer. If it would just say it doesn't know the answer, it would be harder to tell it apart from an human.",
+      "storyTitle": "People tricking ChatGPT “like watching an Asimov novel come to life”",
+      "hnUrl": "https://news.ycombinator.com/item?id=33834411"
+    },
+    {
+      "id": 33919101,
+      "project": "ChatGPT",
+      "author": "ginko",
+      "date": "2022-12-09",
+      "year": 2022,
+      "text": "One example where I found ChatGPT to fail quite spectacularly was this: >Write a sentence with exactly 12 words. The quick brown fox jumps over the lazy dog.",
+      "storyTitle": "ChatGPT, Rot13, and Daniel Kahneman",
+      "hnUrl": "https://news.ycombinator.com/item?id=33919101"
+    },
+    {
+      "id": 34115504,
+      "project": "ChatGPT",
+      "author": "_xnmw",
+      "date": "2022-12-24",
+      "year": 2022,
+      "text": "I'm not convinced that ChatGPT is anything more than just a fad in the current AI hype cycle, slightly more useful than Google's current answer snippets, but no more. ChatGPT still gets basic facts wrong, because it doesn't \"understand\" the material, it just relies on statistical correlations in language. But as philosophers and linguists have long known, outward forms of language are NOT the same as \"understanding\" the underlying concepts, though it can get tantalizingly close in appearance. In fact the impossible gap between language and logic has long been a favourite topic of both Eastern and Western philosophers. Language is hopelessly bad at expressing logical concepts unambiguously and correctly (hence the need for mathematical and logical symbols), and the only reason language works for us is because our brains are amazingly good at picking out the \"relevant\" meaning of sentences from literally thousands of possible interpretations. This happens at every level of language, from grammar and parsing sentence structure, to high-level conceptualization. But this is not a problem that can (according to current knowledge) be fixed with any deterministic or statistical model, and has been studied intensely for centuries. And so, this problem with ChatGPT's inaccuracy is not a problem that will be fixed with time. Like self-driving cars, the first 80% of the problem is trivially easy, but the remaining 20% is impossible, even with tens of billions in funding poured into this problem over the last decade. And the problem is, without that remaining 20%, the technology is useless because it needs to be close to 100% reliable for it to be useful at all. How can you verify the correctness of \"facts\" that ChatGPT so convincingly regurgitates? This is a recursive problem. Solving this problem would be tantamount to solving the hard problem of consciousness. We are still not anywhere close to Artificial General Intelligence, and one should attempt to at least understand the problems underlying this before thinking that ChatGPT is actually intelligent. See for example, John Vervaeke's study of Relevance Realization and \"the impossibility of a general learning algorithm solution\" [1]. [1] http://www.ipsi.utoronto.ca/sdis/Relevance-Published.pdf",
+      "storyTitle": "ChatGPT is a ‘code red’ for Google’s search business",
+      "hnUrl": "https://news.ycombinator.com/item?id=34115504"
+    },
+    {
+      "id": 35534836,
+      "project": "Substack",
+      "author": "perceptronas",
+      "date": "2023-04-12",
+      "year": 2023,
+      "text": "I wonder, if Substack Notes fail – will Substack survive? It feels like they are pivoting into not-that profitable domain",
+      "storyTitle": "Substack Notes Launched",
+      "hnUrl": "https://news.ycombinator.com/item?id=35534836"
+    },
+    {
+      "id": 35704823,
+      "project": "Notion",
+      "author": "ChildOfChaos",
+      "date": "2023-04-25",
+      "year": 2023,
+      "text": "I don't get the notion hype, I just don't like it. Even worse, is you go on product hunt and there are nonstop 'product' launches which are just notion templates named 'operating systems' being sold at crazy prices for what they are. I don't get what I am missing. I personally love and use Trello, because it's basically just a bunch of lists that I can drag and drop too, i have a boards named 'spark board, where i keep lists of things I am interested in, it's a list of movies, tv shows, games to play, things to eat, things i might want to buy, even lists for different people and things they mentioned so i have gifts for them when it comes time to buy, whenever i need anything I just go there, search the list and find something, but notion is just annoying to me, I hate the UI and i don't see the point in it.",
+      "storyTitle": "People who use Notion to plan their whole lives",
+      "hnUrl": "https://news.ycombinator.com/item?id=35704823"
+    },
+    {
+      "id": 35706094,
+      "project": "Notion",
+      "author": "iamthirsty",
+      "date": "2023-04-25",
+      "year": 2023,
+      "text": "> I don't get the notion hype, I just don't like it. > I don't get what I am missing. 100% agree. Notion doesn't work like my brain when it comes to documents, formatting, structuring — I ended up spending most of my time configuring systems and formatting than actually inputting information & accomplishing things. I've tried a few times to get into it, and see what others see in it. I just can't.",
+      "storyTitle": "People who use Notion to plan their whole lives",
+      "hnUrl": "https://news.ycombinator.com/item?id=35706094"
+    },
+    {
+      "id": 35834299,
+      "project": "HTMX",
+      "author": "doodlesdev",
+      "date": "2023-05-05",
+      "year": 2023,
+      "text": "Hotwire is appropriate (I imagine you're not using actual Turbolinks which has been deprecated) with RoR or whatever stack you want, I agree it's great developer experience (despite Ruby and Rails being painfully slow haha). I wonder which full-stack JS framework you used that you thought made life harder? One of the things that gets me mad is the idea of putting it all in one single box, as React is indeed very (needlessly) complex and so can be other libraries, but that doesn't mean the paradigm of JavaScript front-to-back is fundamentally flawed. edit: Something else I should've added to my comment is that the HTMX approach is terrible if you ever need more than just the web-client (i.e. a mobile app, native or otherwise) since you will now have to implement an API anyway, which you could've done in the first place by taking the usual approach to development.",
+      "storyTitle": "Htmx Is the Future",
+      "hnUrl": "https://news.ycombinator.com/item?id=35834299"
+    },
+    {
+      "id": 36005178,
+      "project": "LangChain",
+      "author": "nacs",
+      "date": "2023-05-19",
+      "year": 2023,
+      "text": "That intro to Langchain is absolutely terrible. Like it was copy-pasted from the worst LLM they could find and pasted in: > The first high-performance and open-source LLM called BLOOM was released. OpenAI released their next-generation text embedding model and the next generation of “GPT-3.5” models. Just random sentences strung together delivering no overall message. Yes we know BLOOM and GPT exist, what is your point? > LangChain appeared around the same time. Its creator, Harrison Chase, made the first commit in late October 2022. Leaving a short couple of months of development before getting caught in the LLM wave. That's nice that the text model that wrote this knows the creator and first commit but ugh -- just say \"Langchain was published in October 2022\" instead of all that garbage. Also, \"Leaving a short couple of months of development before getting caught in the LLM wave.\" doesn't even form a complete sentence. I'm already hating the future of blog posts and articles where we have to mentally filter out all the LLM-generated garbage around any real information.",
+      "storyTitle": "LangChain: The Missing Manual",
+      "hnUrl": "https://news.ycombinator.com/item?id=36005178"
+    },
+    {
+      "id": 36648778,
+      "project": "LangChain",
+      "author": "LASR",
+      "date": "2023-07-08",
+      "year": 2023,
+      "text": "The reason why Langchain is pointless is that it's trying to solve problems on top of technical foundations that just cannot support it. The #1 learning is that there is no reusability with the current generation of LLMs. We're using GPT-4 and 3.5T exclusively. Over the last several months, my team has been building several features using highly sophisticated LLM chains that do all manner of reasoning. The ultimate outputs are very human-like to the point where there is some private excitement that we've built an AGI. Each feature requires very custom handwritten prompts. Each step in the chain requires handwritten prompts. The input data has to be formatted a very specific way to generate good outputs for that feature/chain step. The part around setting up a DAG orchestration to run these chains is like 5% of the work. 95% is really just in the prompt tuning and data serialization formats. None of this stuff is reusable. Langchain is attempting to set up abstractions to reuse everything. But what we end up with a mediocre DAG framework where all the instructions/data passing through is just garbage. The longer the chain, the more garbage you find at the output. We briefly made our own internal Langchain. We tore it down now. Again not that our library or Langchain was bad engineering. It's just not feasible on top of the foundation models we have right now.",
+      "storyTitle": "Langchain Is Pointless",
+      "hnUrl": "https://news.ycombinator.com/item?id=36648778"
+    },
+    {
+      "id": 36650873,
+      "project": "LangChain",
+      "author": "donpark",
+      "date": "2023-07-09",
+      "year": 2023,
+      "text": "I agree that LangChain is pointless for experienced ML developers building products. For the rest, I disagree as just getting to the point where same observation can be made is worthwhile.",
+      "storyTitle": "Langchain Is Pointless",
+      "hnUrl": "https://news.ycombinator.com/item?id=36650873"
+    },
+    {
+      "id": 36768217,
+      "project": "LangChain",
+      "author": "pirate_solo9",
+      "date": "2023-07-18",
+      "year": 2023,
+      "text": "The thing with langchain is that it's documentation is terrible. If I want to do something I have to rely on other sources to use it. That's just an overkill.",
+      "storyTitle": "The Problem with LangChain",
+      "hnUrl": "https://news.ycombinator.com/item?id=36768217"
+    },
+    {
+      "id": 37208786,
+      "project": "Snowflake",
+      "author": "benrutter",
+      "date": "2023-08-21",
+      "year": 2023,
+      "text": "As a data engineer who's worked in a bunch of different contexts/companies I 100% agree most of the time snowflake/databricks is an unnecessary money sink. The main problem is most companies need the security of a managed service for cloud computing, and don't want to be locked out of scaling to a very large scale (with distributed compute). Unfortunately, I don't think there are a lot of options that meet those pretty simple requirements that aren't databricks or snowflake[1]. Sure, you could put your compute on single docker containers, but when your data gets too big your stuck and have to get someone expensive in to manage kubernetes, all that time, you can't compute on your data. Which is sorta the crux of it: databricks and snowflake are expensive, but not nearly as expensive as finding out you need them and not having them. [1] if you're using python on was/gcp, I think coiled (coiled.io) is a rare exception to that pattern",
+      "storyTitle": "Most companies do not need Snowflake or Databricks",
+      "hnUrl": "https://news.ycombinator.com/item?id=37208786"
+    },
+    {
+      "id": 37250562,
+      "project": "Hugging Face",
+      "author": "sleepybrett",
+      "date": "2023-08-24",
+      "year": 2023,
+      "text": "Hugging face is a terrible name for an ai company. Predicting it suffocating us all both mentally and physically?",
+      "storyTitle": "Hugging Face raises $235M from investors including Salesforce and Nvidia",
+      "hnUrl": "https://news.ycombinator.com/item?id=37250562"
+    },
+    {
+      "id": 37439613,
+      "project": "Bun",
+      "author": "vasergen",
+      "date": "2023-09-08",
+      "year": 2023,
+      "text": "I think the version is actually closer to `1.0.0-beta` than to `1.0.0`. I just installed v 1.0.0 and run `bun repl` and it failed with exit status code 1, it turns out the repl wants to use port 3000, which was used in my case already. There are probably a lot of other small things like that, look on reported bugs in github. So, I also should be 'skeptical' about all claims they did. Nevertheless I am super impressed with their speed and exited with the result. Didn't expect this project to grow so quickly to this state, I though it will take them much more time. For comparison, deno was started way earlier and now they are miles behind (personal feeling). I am considering to use it for my pet projects",
+      "storyTitle": "Bun v1.0.0",
+      "hnUrl": "https://news.ycombinator.com/item?id=37439613"
+    },
+    {
+      "id": 37469240,
+      "project": "Intercom",
+      "author": "invalidname",
+      "date": "2023-09-11",
+      "year": 2023,
+      "text": "Yes. Intercom is terrible. Just as I started reading it I was shocked the bill was so low... https://medium.com/@Codename_One/why-we-dumped-intercom-and-...",
+      "storyTitle": "Intercom is a terrible Mailchimp. So is Mailchimp",
+      "hnUrl": "https://news.ycombinator.com/item?id=37469240"
+    },
+    {
+      "id": 37536686,
+      "project": "Vercel",
+      "author": "plussmart2018",
+      "date": "2023-09-16",
+      "year": 2023,
+      "text": "We just finished our website migration from Vercel to GCP to save $50 monthly. If you can, migrate it out ASAP to other cloud platform, like AWS and GCP. Vercel is expensive and has many hidden fees, like $10 per month for monitoring (this should be free), web analytics Plus (google analytics for free) and source images 5$ per 1000 (what is this?). Have no idea why Vercel is desperate to charge user money.",
+      "storyTitle": "Vercel Is Ridiculously Expensive",
+      "hnUrl": "https://news.ycombinator.com/item?id=37536686"
+    },
+    {
+      "id": 37617312,
+      "project": "Vercel",
+      "author": "crooked-v",
+      "date": "2023-09-22",
+      "year": 2023,
+      "text": "There's one huge not-immediately-obvious element there: Vercel bandwidth is expensive. My company switched our CMS content over to Prismic in part because serving all media content directly from them was significantly cheaper than doing so through Vercel, even at a fairly low volume.",
+      "storyTitle": "Show HN: Rapidpages – OSS alternative to vercel's v0",
+      "hnUrl": "https://news.ycombinator.com/item?id=37617312"
+    },
+    {
+      "id": 37841985,
+      "project": "GitHub Copilot",
+      "author": "az09mugen",
+      "date": "2023-10-11",
+      "year": 2023,
+      "text": "The people who know 'how to use Copilot well' are the ones using it just for boilerplate. For almost any other code requiring some logic, copilot is useless. More than that, who owns the code produced by copilot, you or github/microsoft ?",
+      "storyTitle": "GitHub Copilot loses an average of $20 a month per user",
+      "hnUrl": "https://news.ycombinator.com/item?id=37841985"
+    },
+    {
+      "id": 39545405,
+      "project": "Netlify",
+      "author": "evilduck",
+      "date": "2024-02-29",
+      "year": 2024,
+      "text": "As opposed to just negligently allowing it from the outside? Netlify still looks terrible here.",
+      "storyTitle": "Netlify just sent me a $104k bill for a simple static site",
+      "hnUrl": "https://news.ycombinator.com/item?id=39545405"
+    },
+    {
+      "id": 40318465,
+      "project": "Bluesky",
+      "author": "incomingpain",
+      "date": "2024-05-10",
+      "year": 2024,
+      "text": "No doubt. I never did join bluesky because it was pretty doomed from the beginning. https://bsky.social/about/support/community-guidelines Oh ya, look at those toxicity creating guidelines. Nightmare lol.",
+      "storyTitle": "Jack Dorsey claims Bluesky is 'repeating all the mistakes' he made at Twitter",
+      "hnUrl": "https://news.ycombinator.com/item?id=40318465"
+    },
+    {
+      "id": 40742909,
+      "project": "Claude",
+      "author": "joshstrange",
+      "date": "2024-06-20",
+      "year": 2024,
+      "text": "To each their own, but I still prefer ChatGPT. The UI for Claude is terrible in my opinion. I had subscriptions for both and I would fire off questions to both of them and see which one I liked more and I consistently liked the ChatGPT ones more. I canceled my subscription last week for Claude. I am super happy that Anthropic continues to push the envelope on this and I hope to re-subscribe to them in the future.",
+      "storyTitle": "Claude 3.5 Sonnet",
+      "hnUrl": "https://news.ycombinator.com/item?id=40742909"
+    },
+    {
+      "id": 41527645,
+      "project": "OpenAI",
+      "author": "deisteve",
+      "date": "2024-09-13",
+      "year": 2024,
+      "text": "this is why i became skeptical of openai's claims if they shared the COT the grift wont work its just RL",
+      "storyTitle": "Notes on OpenAI's new o1 chain-of-thought models",
+      "hnUrl": "https://news.ycombinator.com/item?id=41527645"
+    },
+    {
+      "id": 41830653,
+      "project": "Vercel",
+      "author": "rafbgarcia",
+      "date": "2024-10-13",
+      "year": 2024,
+      "text": "I created this service to use at my company and wondered if others would also find it useful and benefit from it. Vercel images are too expensive IMHO, USD 5 per 1000 images. No-go for my use case of 100k+ images. I could price this at USD 2 per 1000 transformations, mainly to help others in the same situations as the monetary return would not be expressive. Created a quick MVP to validate interest. Negative/constructive/positive comments are welcome. Thanks.",
+      "storyTitle": "Image optimizer (2x+ cheaper than Vercel images)",
+      "hnUrl": "https://news.ycombinator.com/item?id=41830653"
+    },
+    {
+      "id": 41890993,
+      "project": "Svelte",
+      "author": "shepherdjerred",
+      "date": "2024-10-19",
+      "year": 2024,
+      "text": "The minimum to be a broadly employable frontend dev is to have knowledge HTML + CSS + JavaScript/TypeScript + React/Vue. Svelte is pretty niche. I'm not saying you shouldn't learn it, but that you should focus on the common tools first. This is just like you might tell a friend learning programming to learn Java/Python/Go etc. before getting into Lisp/Haskell/Prolog. All are useful and have their place, but one set of languages is definitely more likely to be used in a workplace (unless you're lucky!). If you want my opinion on a cool/trendy framework to use, I really like Astro [0], but, again, I doubt anyone will hire you unless you also have experience in React/similar. [0]: https://astro.build/",
+      "storyTitle": "Svelte 5 Released",
+      "hnUrl": "https://news.ycombinator.com/item?id=41890993"
+    },
+    {
+      "id": 42737026,
+      "project": "Devin",
+      "author": "weatherlite",
+      "date": "2025-01-17",
+      "year": 2025,
+      "text": "The whole idea of Devin is pointless and doomed to fail in my humble opinion, big tech will be quite capable on delivering A.I agents / assistants - very soon. I don't think wrappers over other people's LLMs like Devin make a lot of sense. Can someone help me understand what's the value proposition / moat of this company?",
+      "storyTitle": "Thoughts on a month with Devin",
+      "hnUrl": "https://news.ycombinator.com/item?id=42737026"
+    },
+    {
+      "id": 43299859,
+      "project": "Cursor",
+      "author": "FlyingAvatar",
+      "date": "2025-03-08",
+      "year": 2025,
+      "text": "The Sonnet 3.7 'Agent' implementation in Cursor is terrible. It takes 10x longer to produce a worse response. I don't understand if this is a cost saving measure to reduce token count, but it is really bad. Thankfully, switching to Sonnet 3.7 in 'Ask' mode has been essentially fine and is comparable to how Sonnet 3.5 performed for me.",
+      "storyTitle": "Ask HN: Is Cursor deleting working code for you too or is it just me?",
+      "hnUrl": "https://news.ycombinator.com/item?id=43299859"
+    },
+    {
+      "id": 43449664,
+      "project": "Next.js",
+      "author": "mattmanser",
+      "date": "2025-03-22",
+      "year": 2025,
+      "text": "That's a bold claim, that's easy to refute. Next.js is a bad choice for a lot of apps, javascript is slow at a lot of things. Next.js would be a terrible choice for any app that has any non-trivial compute, for example.",
+      "storyTitle": "Next.js version 15.2.3 has been released to address a security vulnerability",
+      "hnUrl": "https://news.ycombinator.com/item?id=43449664"
+    },
+    {
+      "id": 43509167,
+      "project": "Cursor",
+      "author": "catlover76",
+      "date": "2025-03-28",
+      "year": 2025,
+      "text": "I use it regularly, and used to use GitHub Copilot. I think Cursor is probably overhyped and not worth the money, and I want to explore switching back to Copilot or trying Cody, or other alternatives. However, it's hard for me to test against GitHub Copilot because the latter's tab-completion conflicts with Vim keybindings in VSCode. If the AI-autocomplete from GitHub Copilot can get the job done, I would not keep using Cursor, I would pay the smaller amount for Copilot instead. I don't use the Cursor chat much, because it's worse than just copying and pasting code back-and-forth between IDE and \"native\" ChatGPT. IME, it is better than Copilot's though.",
+      "storyTitle": "Ask HN: How Is Cursor Different Than GitHub Copilot or Sourcegraph Cody?",
+      "hnUrl": "https://news.ycombinator.com/item?id=43509167"
+    },
+    {
+      "id": 43677910,
+      "project": "Cursor",
+      "author": "verelo",
+      "date": "2025-04-14",
+      "year": 2025,
+      "text": "This was my experience, until the latest update. Suddenly cursor is useless. The agent option? Terrible. What’s manual, what’s ask? Just give me what i had before…such a step backwards.",
+      "storyTitle": "Writing Cursor rules with a Cursor rule",
+      "hnUrl": "https://news.ycombinator.com/item?id=43677910"
+    },
+    {
+      "id": 43956639,
+      "project": "Klarna",
+      "author": "Freak_NL",
+      "date": "2025-05-11",
+      "year": 2025,
+      "text": "In the Netherlands no less than twenty trade associations sent letters to the government on behalf of their shopkeeper members urging legal action to prevent Klarna from coming. Part of it is that Klarna is fairly expensive compared to the common payment methods (i.e., cash and debit cards). Klarna charges a whopping 4% of the purchase price, whereas using a debit card (perhaps 95% of payments in physical shops) costs a fixed 17 euro cents, and cash costs just the costs of keeping it around safely and getting it to the bank. But there is also the realisation that a customer who uses BNPL today, won't be coming back next month when they are paying off their loan. Dutch shopkeepers do not want Klarna, but if major chains like Primark etc. do it, they fear customers will start expecting it.",
+      "storyTitle": "Klarna changes its AI tune and again recruits humans for customer service",
+      "hnUrl": "https://news.ycombinator.com/item?id=43956639"
+    },
+    {
+      "id": 44069593,
+      "project": "Claude",
+      "author": "andyferris",
+      "date": "2025-05-23",
+      "year": 2025,
+      "text": "I wouldn’t want to wait ages for Claude Code to fail 60% of the time. A 20% risk seems more manageable, and the improvements speak to better code and problem solving skills around.",
+      "storyTitle": "Claude 4",
+      "hnUrl": "https://news.ycombinator.com/item?id=44069593"
+    },
+    {
+      "id": 44183927,
+      "project": "Mistral",
+      "author": "kiratp",
+      "date": "2025-06-04",
+      "year": 2025,
+      "text": "How do you launch a dev tool with a “contact us” call to action? It’s like Mistral is choosing to fail here. Edit: I can't even tell if its a CLI tool, an IDE plugin or a standalone IDE! Edit 2: oh man! it's at the bottom of the page Edit 3: \"Mistral Code Enterprise is currently only available with an enterprise license.\" :D",
+      "storyTitle": "Mistral Code",
+      "hnUrl": "https://news.ycombinator.com/item?id=44183927"
+    },
+    {
+      "id": 44805232,
+      "project": "Ollama",
+      "author": "dcreater",
+      "date": "2025-08-05",
+      "year": 2025,
+      "text": "But Ollama is a toy, it's meaningful for hobbyists and individuals to use locally like myself. Why would it be the right choice for anything more? AWS, vLLM, SGLang etc would be the solutions for enterprise I knew a startup that deployed ollama on a customers premises and when I asked them why, they had absolutely no good reason. Likely they did it because it was easy. That's not the \"easy to use\" case you want to solve for.",
+      "storyTitle": "Ollama Turbo",
+      "hnUrl": "https://news.ycombinator.com/item?id=44805232"
+    },
+    {
+      "id": 44963018,
+      "project": "Databricks",
+      "author": "burnerzzzzz",
+      "date": "2025-08-20",
+      "year": 2025,
+      "text": "My company is heavily invested in Databricks and let me tell you it sucks. 5 min to spin up a job that needs to run for 10 seconds is a terrible way to spend ones time and money.",
+      "storyTitle": "Databricks is raising a Series K Investment at >$100B valuation",
+      "hnUrl": "https://news.ycombinator.com/item?id=44963018"
+    },
+    {
+      "id": 46025432,
+      "project": "Raycast",
+      "author": "howmayiannoyyou",
+      "date": "2025-11-23",
+      "year": 2025,
+      "text": "Raycast was too expensive. Dumped it for Alfred. Took a few weeks, but I'm happy.",
+      "storyTitle": "Raycast for Windows",
+      "hnUrl": "https://news.ycombinator.com/item?id=46025432"
+    },
+    {
+      "id": 46128619,
+      "project": "Anthropic",
+      "author": "ojosilva",
+      "date": "2025-12-03",
+      "year": 2025,
+      "text": "Yeah, now they are part of Anthropic, who haven't figured out monetization themselves. Shikes! I'm a user of Bun and an Anthropic customer. Claude Code is great and it's definitely where their models shine. Outside of that Anthropic sucks,their apps and web are complete crap, borderline unusable and the models are just meh. I get it, CC's head got probably a powerplay here given his department is towing the company and his secret sauce, according to marketing from Oven, was Bun. In fact VSCode's claude backend is distributed in bun-compiled binary exe, and the guy is featured on the front page of the Bun website since at least a week or so. So they bought the kid the toy he asked for. Anthropic needs urgently, instead, to acquire a good team behind a good chatbot and make something minimally decent. Then make their models work for everything else as well as they do with code.",
+      "storyTitle": "Anthropic acquires Bun",
+      "hnUrl": "https://news.ycombinator.com/item?id=46128619"
+    },
+    {
+      "id": 47920482,
+      "project": "Mistral",
+      "author": "aurareturn",
+      "date": "2026-04-27",
+      "year": 2026,
+      "text": "In my opinion, being \"Not American\" or \"Not Chinese\" is not a good business model long-term. At some point, businesses will choose the option that provides the most value. I'm very skeptical that Mistral will survive long-term. Edit: I hear the commenters to this post. However, Mistral still relies on American chips. If there is truly a divorce between Europe and the US such that relying OpenAI or Anthropic is not an option, neither will relying on Nvidia and likely the thousands of smaller hardware and software suppliers that make Mistral work. That's why I don't think it's realistic to say that Europeans can't rely on OpenAI/Anthropic and that Mistral is free from American reliance. If you want true independence, you have to rebuild every single layer like what China is doing. That's hard and expensive.",
+      "storyTitle": "Mistral built a $14B AI empire by not being American",
+      "hnUrl": "https://news.ycombinator.com/item?id=47920482"
+    },
+    {
+      "id": 48978832,
+      "project": "Bun",
+      "author": "pier25",
+      "date": "2026-07-20",
+      "year": 2026,
+      "text": "This is the exact reason I stopped using Bun for new projects. Terrible project governance. TS 7 is a good example of what a responsible team that cares about their users should have done.",
+      "storyTitle": "Claude Code uses Bun written in Rust now",
+      "hnUrl": "https://news.ycombinator.com/item?id=48978832"
+    },
+    {
+      "id": 49166406,
+      "project": "Airtable",
+      "author": "weego",
+      "date": "2026-08-04",
+      "year": 2026,
+      "text": "Airtable has got too expensive for all the weird limitations you end up either writing tons of weird hacks around or paying another sass product to fix for you because airtable don't want to engineer a solution. Can't say it'll be hugely missed whatever they do at this point.",
+      "storyTitle": "Bending Spoons makes first post-IPO acquisition with $1.3B Airtable deal",
+      "hnUrl": "https://news.ycombinator.com/item?id=49166406"
+    },
+    {
+      "id": 49358277,
+      "project": "Bun",
+      "author": "aureate",
+      "date": "2026-08-19",
+      "year": 2026,
+      "text": "In other words, it hasn't shipped. The bun rewrite is looked to as proof that this sort of full-throttle vibecoding is the future of software development, at least for large porting projects like this one, and for many people on this site that is a high stakes question. To prove that, a proper release is needed, and the Bun community needs to adopt it. There's a huge partisan eagerness to declare the Claude Code release or anecdotal experiences on the canary as victory, but the viability of 1.4 hasn't been demonstrated until it has been released and adopted by the bulk of the community. There isn't actually any hurry on that. Nobody needs Bun 1.4 tomorrow. It's Jarred that keeps saying it'll be released tomorrow, while the code churns at an astonishing rate (see below). People with a skeptical outlook will inevitably suspect that he doesn't have confidence in the release and is struggling to acquire it. Github insights for the last week: > Excluding merges, 57 authors have pushed 349 commits to main and 6892 commits to all branches. > On main, 2026 files have changed and there have been 189,502 additions and 133,836 deletions",
+      "storyTitle": "Bun 1.4 Rust rewrite is not looking good?",
+      "hnUrl": "https://news.ycombinator.com/item?id=49358277"
+    }
+  ]
+}
